@@ -1,0 +1,182 @@
+[
+  {
+    "id": "potato-europe",
+    "title": "ملخص محاضرة Potato Europe",
+    "subtitle": "تحديات المناخ • الزراعة التجديدية • التحول الرقمي",
+    "file": "PepsiCo_Potato_Europe_Summary.html",
+    "category": "استراتيجية",
+    "tags": ["مناخ", "رقمنة", "PEP Plus", "مياه"],
+    "speaker": "Ian Rigby & Mini Agarwal",
+    "icon": "🌍"
+  },
+  {
+    "id": "gspt-strategy",
+    "title": "GSPT — عقل سلسلة إمداد البذور",
+    "subtitle": "من التخطيط العام إلى التخطيط التفصيلي متعدد السنوات",
+    "file": "GSPT_seed_strategy.html",
+    "category": "بذور",
+    "tags": ["GSPT", "بذور", "تخطيط", "بيانات"],
+    "speaker": "Sarah Bauer",
+    "icon": "🌱"
+  },
+  {
+    "id": "gspt-lecture",
+    "title": "محاضرة GSPT – أداة التخطيط العالمي للبذور",
+    "subtitle": "الميزة التنافسية وإدارة البذور عالمياً",
+    "file": "GSPT_PepsiCo_Lecture.html",
+    "category": "بذور",
+    "tags": ["GSPT", "بذور", "تخطيط"],
+    "speaker": "سارة باور",
+    "icon": "📊"
+  },
+  {
+    "id": "gspt-slides",
+    "title": "GSPT — عرض شرائح التخطيط",
+    "subtitle": "عرض بصري لـ Global Seed Planning Tool",
+    "file": "GSPT_PepsiCo_Seed_Planning_Offline-2.html",
+    "category": "بذور",
+    "tags": ["GSPT", "شرائح"],
+    "speaker": "Sarah Bauer",
+    "icon": "📑"
+  },
+  {
+    "id": "variety-dev",
+    "title": "استراتيجية تطوير أصناف البطاطس",
+    "subtitle": "من آلاف السلالات إلى صنف تجاري ناجح",
+    "file": "potato_variety_development.html",
+    "category": "أصناف",
+    "tags": ["تربية", "أصناف", "R&D", "محفظة"],
+    "speaker": "R&D PepsiCo",
+    "icon": "🧬"
+  },
+  {
+    "id": "variety-select",
+    "title": "استراتيجية اختيار أصناف البطاطس للشيبس",
+    "subtitle": "من المنتج النهائي إلى الصنف المناسب",
+    "file": "potato_variety_selection.html",
+    "category": "أصناف",
+    "tags": ["أصناف", "محفظة", "جودة"],
+    "speaker": "PepsiCo",
+    "icon": "🥔"
+  },
+  {
+    "id": "agro-2026",
+    "title": "الزراعة والتحول الرقمي | Global Agro 2026",
+    "subtitle": "من أزمة البطاطس إلى زراعة أكثر ذكاءً",
+    "file": "global_agro_university_2026.html",
+    "category": "استراتيجية",
+    "tags": ["مناخ", "ثقة", "رقمنة"],
+    "speaker": "Ian Rigby",
+    "icon": "🚀"
+  },
+  {
+    "id": "storage",
+    "title": "تخزين البطاطس — من التبريد إلى إدارة الجودة",
+    "subtitle": "Measure to Manage • حتى 11 شهرًا",
+    "file": "potato_storage_guide.html",
+    "category": "تخزين وجودة",
+    "tags": ["تخزين", "CO₂", "جودة", "طاقة"],
+    "speaker": "Storage Team",
+    "icon": "❄️"
+  },
+  {
+    "id": "nutrition",
+    "title": "تغذية النبات وإنتاج البطاطس",
+    "subtitle": "من المعرفة إلى إنتاج أفضل • شراكة Yara",
+    "file": "global_agro_university_plant_nutrition.html",
+    "category": "تغذية وري",
+    "tags": ["نيتروجين", "كفاءة", "Yara"],
+    "speaker": "Mark (Yara)",
+    "icon": "🧪"
+  },
+  {
+    "id": "irrigation",
+    "title": "إدارة الري وتغذية البطاطس",
+    "subtitle": "من الإجهاد إلى الاستقرار",
+    "file": "irrigation_nutrition_lecture.html",
+    "category": "تغذية وري",
+    "tags": ["ري", "تنقيط", "عناصر", "إجهاد"],
+    "speaker": "Willem & Mark",
+    "icon": "💧"
+  },
+  {
+    "id": "production",
+    "title": "إنتاج البطاطس التصنيعية",
+    "subtitle": "من الخبرة الميدانية إلى البيانات والذكاء الاصطناعي",
+    "file": "potato_production_lecture.html",
+    "category": "إنتاج",
+    "tags": ["إنتاج", "مادة جافة", "ضوء", "بيانات"],
+    "speaker": "أنطون (Anton)",
+    "icon": "☀️"
+  },
+  {
+    "id": "reducing-sugars",
+    "title": "السكريات المختزلة وجودة البطاطس المصنعة",
+    "subtitle": "من النشا إلى البطاطس الذهبية",
+    "file": "potato_reducing_sugars.html",
+    "category": "تخزين وجودة",
+    "tags": ["سكريات", "ميلارد", "أكريلاميد", "لون"],
+    "speaker": "Quality Team",
+    "icon": "🍟"
+  },
+  {
+    "id": "quality",
+    "title": "إدارة جودة البطاطس بعد الحصاد",
+    "subtitle": "من كدمات الحصاد إلى التخزين البارد",
+    "file": "potato_quality_lecture.html",
+    "category": "تخزين وجودة",
+    "tags": ["كدمات", "حصاد", "Hot Box", "ثقافة"],
+    "speaker": "Quality Team",
+    "icon": "🛡️"
+  },
+  {
+    "id": "stolbur",
+    "title": "مرض Stolbur وإدارة ناقلات المرض",
+    "subtitle": "في البطاطس وبنجر السكر",
+    "file": "stolbur_potato_sugarbeet_report.html",
+    "category": "أمراض وآفات",
+    "tags": ["Stolbur", "فيتوبلازما", "نواقل"],
+    "speaker": "Disease Team",
+    "icon": "🦠"
+  },
+  {
+    "id": "diagnosis",
+    "title": "تشخيص مشاكل البطاطس",
+    "subtitle": "قبل المكافحة — التشخيص الصحيح أساس النجاح",
+    "file": "jeff_miller_potato_diagnosis.html",
+    "category": "أمراض وآفات",
+    "tags": ["تشخيص", "نقص عناصر", "PVY", "Alternaria"],
+    "speaker": "جيف ميلر (Jeff Miller)",
+    "icon": "🔍"
+  },
+  {
+    "id": "drones",
+    "title": "الطائرات المسيّرة في الزراعة الحديثة",
+    "subtitle": "تقنيات مبتكرة لزراعة أذكى وأكثر أمانًا",
+    "file": "drones_agriculture_lecture.html",
+    "category": "تكنولوجيا",
+    "tags": ["طائرات", "رش", "سلامة", "توقيت"],
+    "speaker": "Drone Specialist",
+    "icon": "🚁"
+  },
+  {
+    "id": "application",
+    "title": "تكنولوجيا التطبيق | Application Technology",
+    "subtitle": "من العبوة إلى النبات المستهدف",
+    "file": "application_technology_syngenta.html",
+    "category": "تكنولوجيا",
+    "tags": ["رش", "فوهات", "انجراف", "Syngenta"],
+    "speaker": "James – Syngenta",
+    "icon": "🎯"
+  },
+  {
+    "id": "vr-harvest",
+    "title": "تدريب حصاد البطاطس بالواقع الافتراضي",
+    "subtitle": "PepsiCo × Altura • بيئة آمنة وتفاعلية",
+    "file": "potato_harvest_VR_training.html",
+    "category": "تدريب",
+    "tags": ["VR", "حصاد", "كدمات", "تدريب"],
+    "speaker": "PepsiCo × Altura",
+    "icon": "🥽"
+  }
+]

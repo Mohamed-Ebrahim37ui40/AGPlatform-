@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاضرة GSPT – أداة التخطيط العالمي للبذور | بيبسيكو</title>
+<style>
+  :root {
+    --pepsi-blue: #004B93;
+    --pepsi-red: #E32934;
+    --accent-green: #2E8B57;
+    --accent-teal: #008B8B;
+    --accent-orange: #FF8C00;
+    --accent-purple: #6A5ACD;
+    --bg-light: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --shadow: 0 10px 30px rgba(0,75,147,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', Arial, sans-serif;
+    background: linear-gradient(135deg, #E0F2FE 0%, #F0FDF4 50%, #FEF3C7 100%);
+    color: var(--text-dark);
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--pepsi-blue), #0077C8);
+    color: white;
+    padding: 40px 30px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: pulse 8s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  header .subtitle {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    position: relative;
+  }
+  .speaker-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: 600;
+    position: relative;
+  }
+  .speaker-badge svg { width: 28px; height: 28px; }
+
+  /* Section Cards */
+  .section {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    border-right: 6px solid var(--pepsi-blue);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,75,147,0.18);
+  }
+  .section.green { border-right-color: var(--accent-green); }
+  .section.teal { border-right-color: var(--accent-teal); }
+  .section.orange { border-right-color: var(--accent-orange); }
+  .section.purple { border-right-color: var(--accent-purple); }
+  .section.red { border-right-color: var(--pepsi-red); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .section-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-icon svg { width: 28px; height: 28px; fill: white; }
+  .section-title {
+    font-size: 1.35rem;
+    color: var(--pepsi-blue);
+    font-weight: 700;
+  }
+
+  /* Divider under each transition */
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, var(--pepsi-blue), var(--accent-green), var(--accent-orange), var(--pepsi-red));
+    border-radius: 4px;
+    margin: 10px 0 25px;
+    opacity: 0.7;
+  }
+
+  /* Lists */
+  ul { padding-right: 22px; }
+  li { margin-bottom: 8px; }
+  .highlight {
+    background: linear-gradient(90deg, #FEF3C7, transparent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  /* Cards grid */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .mini-card {
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid #E2E8F0;
+  }
+  .mini-card .icon { font-size: 2rem; margin-bottom: 8px; }
+  .mini-card h4 { color: var(--pepsi-blue); margin-bottom: 6px; }
+
+  /* Comparison boxes */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .compare-box {
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .compare-box.old {
+    background: linear-gradient(135deg, #FEE2E2, #FECACA);
+    border: 2px solid #F87171;
+  }
+  .compare-box.new {
+    background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+    border: 2px solid #34D399;
+  }
+  .compare-box .num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    display: block;
+  }
+  .compare-box.old .num { color: #DC2626; }
+  .compare-box.new .num { color: #059669; }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .stat {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    min-width: 140px;
+  }
+  .stat .value { font-size: 1.8rem; font-weight: 800; color: var(--pepsi-blue); }
+  .stat .label { font-size: 0.9rem; color: var(--text-muted); }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-right: 30px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--pepsi-blue), var(--accent-green));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+    padding: 12px 18px;
+    background: #F1F5F9;
+    border-radius: 10px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    right: -26px;
+    top: 18px;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--accent-green);
+  }
+
+  /* Dashboard mock */
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .dash-card {
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #BFDBFE;
+  }
+  .dash-card h5 { color: var(--pepsi-blue); font-size: 0.95rem; margin-bottom: 8px; }
+  .bar {
+    height: 8px;
+    background: #E2E8F0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background: #F0FDF4;
+    border-radius: 10px;
+    border-right: 4px solid var(--accent-green);
+  }
+  .checklist .check {
+    width: 24px;
+    height: 24px;
+    background: var(--accent-green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: bold;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  footer strong { color: var(--pepsi-blue); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .compare { grid-template-columns: 1fr; }
+    .dashboard { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.5rem; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .section { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <h1>🌱 GSPT – أداة التخطيط العالمي للبذور</h1>
+    <p class="subtitle">المحاضرة الاستراتيجية لسلسلة إمداد البذور في بيبسيكو</p>
+    <div class="speaker-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/></svg>
+      سارة باور (Sarah Bauer) – فريق إدارة برامج البذور العالمية
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- 1. مقدمة -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#004B93,#0077C8);">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h2 class="section-title">1. الميزة التنافسية لبيبسيكو</h2>
+    </div>
+    <p>أوضحت سارة أن بيبسيكو تتمتع بوضع فريد مقارنة بالمنافسين، لأن:</p>
+    <ul>
+      <li>الشركة تمتلك <span class="highlight">أصنافًا زراعية خاصة</span> (Proprietary Varieties).</li>
+      <li>تدير إنتاج البذور بنفسها على مستوى عالمي.</li>
+      <li>البذور ليست مجرد سلعة تجارية، بل <strong>أصل استراتيجي</strong> يمنحها ميزة تنافسية طويلة الأجل.</li>
+      <li>استقرار سلسلة إمداد البذور هو الأساس لضمان جودة المنتجات النهائية والمحافظة على تفضيل المستهلكين.</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 2. التحديات -->
+  <section class="section red">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#E32934,#FF6B6B);">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      </div>
+      <h2 class="section-title">2. التحديات الرئيسية الحالية</h2>
+    </div>
+    <div class="grid-3">
+      <div class="mini-card">
+        <div class="icon">⚠️</div>
+        <h4>المخاطر (Risk)</h4>
+        <p>تقلبات الإنتاج، التغيرات المناخية، عدم دقة التخطيط المستقبلي</p>
+      </div>
+      <div class="mini-card">
+        <div class="icon">🤝</div>
+        <h4>العلاقات والشراكات</h4>
+        <p>الموردون، المزارعون، فرق العمل حول العالم</p>
+      </div>
+      <div class="mini-card">
+        <div class="icon">📊</div>
+        <h4>البيانات (Data)</h4>
+        <p>جمع موحد، تحليل دقيق، قرارات أفضل</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 3. ما هي GSPT -->
+  <section class="section teal">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#008B8B,#20B2AA);">
+        <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+      </div>
+      <h2 class="section-title">3. ما هي أداة GSPT؟</h2>
+    </div>
+    <p style="font-size:1.15rem; text-align:center; margin-bottom:16px;">
+      <strong>GSPT = Global Seed Planning Tool</strong><br>
+      منصة عالمية لتخطيط وإدارة البذور
+    </p>
+    <ul>
+      <li>أتمتة عمليات التخطيط</li>
+      <li>تحسين دقة التوقعات</li>
+      <li>تقليل المخاطر</li>
+      <li>دعم التعاون بين البرامج المختلفة</li>
+      <li>الاستفادة من البيانات لاتخاذ قرارات أفضل</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 4. لماذا احتاجت -->
+  <section class="section orange">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#FF8C00,#FFA500);">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+      </div>
+      <h2 class="section-title">4. لماذا احتاجت بيبسيكو إلى GSPT؟</h2>
+    </div>
+    <p>قبل تطوير النظام كانت الشركة تعتمد على:</p>
+    <ul>
+      <li><strong>أكثر من 20 نموذج Excel</strong> مختلف – تؤدي نفس الوظيفة بطرق مختلفة ومخرجات غير موحدة.</li>
+      <li><strong>ثلاثة أنظمة قديمة (Legacy Systems)</strong> – متفاوتة التطور وتعمل بمعزل عن بعضها.</li>
+    </ul>
+    <p style="margin-top:12px;"><strong>المشكلة الرئيسية:</strong> كل برنامج يعمل بشكل منفصل → ضعف التكامل، صعوبة مشاركة المعلومات، محدودية الرؤية العالمية.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 5. حجم العمليات -->
+  <section class="section green">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#2E8B57,#3CB371);">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      </div>
+      <h2 class="section-title">5. حجم وتعقيد عمليات البذور</h2>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="value">23</div>
+        <div class="label">برنامج بذور عالمي</div>
+      </div>
+      <div class="stat">
+        <div class="value">+30</div>
+        <div class="label">علاقة تجارية وإمدادية</div>
+      </div>
+      <div class="stat">
+        <div class="value">🌱</div>
+        <div class="label">بذور + درنات + مخزون</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:10px;">إدارة هذه العمليات بأدوات منفصلة أصبحت غير فعالة.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 6. فلسفة التخطيط -->
+  <section class="section purple">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#6A5ACD,#9370DB);">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+      </div>
+      <h2 class="section-title">6. فلسفة التخطيط في برامج البذور</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>الأنشطة التشغيلية العادية</strong><br>
+        تخطيط لأسابيع أو أشهر فقط
+      </div>
+      <div class="timeline-item">
+        <strong>برامج البذور</strong><br>
+        تخطيط لـ <span class="highlight">3 إلى 5 سنوات</span> مستقبلية
+      </div>
+      <div class="timeline-item">
+        القرارات الزراعية الحالية تؤثر على الإنتاج والأصناف والطلب بعد سنوات
+      </div>
+    </div>
+    <p style="text-align:center; font-weight:600; color:var(--pepsi-blue);">برنامج البذور يبني مستقبل الشركة.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 7. كيف تم التطوير -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#004B93,#00A3E0);">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h2 class="section-title">7. كيف تم تطوير GSPT؟</h2>
+    </div>
+    <ul>
+      <li>زيارة جميع برامج البذور عالميًا</li>
+      <li>إجراء مقابلات مع الفرق المختلفة</li>
+      <li>دراسة التعقيدات والتحديات الخاصة بكل برنامج</li>
+      <li>الاستفادة من أفضل الممارسات في أمريكا الشمالية (FLNA) وأوروبا</li>
+      <li>بناء نظام عالمي موحد يخدم جميع البرامج</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 8. الفوائد -->
+  <section class="section green">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#2E8B57,#228B22);">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+      </div>
+      <h2 class="section-title">8. الفوائد الرئيسية للنظام</h2>
+    </div>
+    <div class="grid-3">
+      <div class="mini-card">
+        <div class="icon">📅</div>
+        <h4>أتمتة التخطيط متعدد السنوات</h4>
+        <p>توقعات، طلب، تخصيص موارد، خطط توسع</p>
+      </div>
+      <div class="mini-card">
+        <div class="icon">🌍</div>
+        <h4>تحسين الرؤية العالمية</h4>
+        <p>أين تُنتج؟ أين تُشحن؟ من المورد؟ أداء كل منطقة</p>
+      </div>
+      <div class="mini-card">
+        <div class="icon">📈</div>
+        <h4>متابعة أداء الأصناف والموردين</h4>
+        <p>قياس أداء كل صنف وموقع ومورد</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 9. مثال عملي -->
+  <section class="section orange">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#FF8C00,#FF4500);">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <h2 class="section-title">9. مثال عملي: قيمة التخطيط التفصيلي</h2>
+    </div>
+    <p style="text-align:center; margin-bottom:12px;">
+      الهدف: إنتاج ما يكفي لـ <strong>100,000 طن</strong> من البطاطس المستخدمة في الرقائق بحلول 2028
+    </p>
+    <div class="compare">
+      <div class="compare-box old">
+        <span>التخطيط التقليدي (متوسطات عامة)</span>
+        <span class="num">≈ 7,000 طن</span>
+        <span>بذور مطلوبة</span>
+      </div>
+      <div class="compare-box new">
+        <span>التخطيط التفصيلي (بيانات فعلية)</span>
+        <span class="num">≈ 5,000 طن</span>
+        <span>بذور مطلوبة فقط</span>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:1.1rem;">
+      فرق ≈ <strong style="color:#DC2626;">2,000 طن</strong> → إنتاج زائد + تكاليف + هدر<br>
+      وفي إحدى المراحل بلغ الفرق حوالي <strong style="color:#DC2626;">33%</strong>
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 10. التأثير المالي -->
+  <section class="section red">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#E32934,#C41E3A);">
+        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      </div>
+      <h2 class="section-title">10. التأثير المالي والتشغيلي</h2>
+    </div>
+    <div class="grid-3">
+      <div class="mini-card" style="border-color:#FECACA;">
+        <h4 style="color:#DC2626;">الإنتاج الزائد يؤدي إلى</h4>
+        <ul style="text-align:right; font-size:0.95rem;">
+          <li>تخزين غير ضروري</li>
+          <li>التخلص من كميات كبيرة</li>
+          <li>زيادة التكاليف</li>
+          <li>ضغط على المزارعين</li>
+        </ul>
+      </div>
+      <div class="mini-card" style="border-color:#A7F3D0;">
+        <h4 style="color:#059669;">التخطيط الأفضل يؤدي إلى</h4>
+        <ul style="text-align:right; font-size:0.95rem;">
+          <li>تقليل الهدر</li>
+          <li>رفع الكفاءة</li>
+          <li>تحسين العلاقة مع الموردين</li>
+          <li>إنتاج مرن ومستدام</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 11. وظائف جديدة -->
+  <section class="section teal">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#008B8B,#40E0D0);">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+      </div>
+      <h2 class="section-title">11. وظائف GSPT الجديدة</h2>
+    </div>
+    <ul>
+      <li><strong>إدارة الاستيراد والتصدير:</strong> تسجيل العمليات داخل النظام بدل الهاتف والبريد والملاحظات الورقية، توثيق الطلبات ومتابعة الشحنات.</li>
+      <li><strong>توحيد بيانات الحقول:</strong> جمع بيانات موحدة عن الإنتاج والغلة وكثافة الزراعة وأداء الحقول → قاعدة بيانات عالمية ضخمة.</li>
+      <li><strong>التخطيط متعدد الأجيال:</strong> متابعة عدة أجيال مستقبلية من البذور والدرنات الصغيرة (Mini Tubers) والنباتات في برامج الإكثار.</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 12. لوحات المعلومات -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#004B93,#1E90FF);">
+        <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+      </div>
+      <h2 class="section-title">12. لوحات المعلومات (Dashboards)</h2>
+    </div>
+    <div class="dashboard">
+      <div class="dash-card">
+        <h5>مقارنة الدول</h5>
+        <p style="font-size:0.85rem;">أفضل إنتاجية vs مناطق تواجه مشكلات</p>
+        <div class="bar"><div class="bar-fill" style="width:85%; background:#004B93;"></div></div>
+      </div>
+      <div class="dash-card">
+        <h5>مقارنة الأصناف</h5>
+        <p style="font-size:0.85rem;">أداء زراعي + معدلات تحويل</p>
+        <div class="bar"><div class="bar-fill" style="width:72%; background:#2E8B57;"></div></div>
+      </div>
+      <div class="dash-card">
+        <h5>مقارنة الموردين</h5>
+        <p style="font-size:0.85rem;">أفضل الموردين + فرص التحسين</p>
+        <div class="bar"><div class="bar-fill" style="width:90%; background:#FF8C00;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 13. الرؤية المستقبلية -->
+  <section class="section green">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#2E8B57,#32CD32);">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <h2 class="section-title">13. الرؤية المستقبلية لـ GSPT</h2>
+    </div>
+    <ul class="checklist">
+      <li><span class="check">✓</span> تقليل المخاطر</li>
+      <li><span class="check">✓</span> تحسين دقة التخطيط</li>
+      <li><span class="check">✓</span> تقليل الهدر والتكاليف</li>
+      <li><span class="check">✓</span> بناء قاعدة بيانات عالمية موحدة</li>
+      <li><span class="check">✓</span> تعزيز التعاون بين الفرق والدول</li>
+      <li><span class="check">✓</span> دعم الميزة التنافسية لبيبسيكو من خلال إدارة متقدمة للبذور</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- الخلاصة -->
+  <section class="section" style="border-right-color:#004B93; background: linear-gradient(135deg,#EFF6FF,#F0FDF4);">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#004B93,#E32934);">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h2 class="section-title">الخلاصة</h2>
+    </div>
+    <p style="font-size:1.1rem; text-align:center;">
+      <strong>GSPT ليس مجرد نظام لإدارة البذور</strong>، بل منصة استراتيجية لبناء مستقبل سلسلة الإمداد الزراعية في بيبسيكو.
+    </p>
+    <p style="margin-top:14px; text-align:center;">
+      من خلال البيانات الموحدة والتخطيط طويل الأجل والتحليل الدقيق، تستطيع الشركة خفض الهدر، وتحسين الإنتاجية، وضمان توفر الأصناف المناسبة بالكميات المناسبة والجودة المناسبة وفي الوقت المناسب.
+    </p>
+  </section>
+
+  <footer>
+    <p>محاضرة منظمة • ألوان ورسوم توضيحية • جاهزة للفتح Offline</p>
+    <p><strong>بيبسيكو | Global Seed Planning Tool (GSPT)</strong></p>
+    <p style="margin-top:8px; font-size:0.85rem;">المتحدثة: سارة باور – عضو فريق إدارة برامج البذور العالمية</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تدريب مشغلي آلات حصاد البطاطس | PepsiCo × Altura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #1B4332;
+      --green: #2D6A4F;
+      --sage: #40916C;
+      --cream: #F8F5F0;
+      --cream-card: #FFFFFF;
+      --orange: #E76F51;
+      --gold: #F4A261;
+      --blue: #1D4E89;
+      --sky: #3A86FF;
+      --dark: #1A1A1A;
+      --muted: #5C5C5C;
+      --light-muted: #8A8A8A;
+      --rule: #D4C9B8;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans Arabic', 'Cairo', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+      direction: rtl;
+    }
+
+    /* ========== HEADER / HERO ========== */
+    .hero {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--green) 60%, #1a3a2a 100%);
+      color: white;
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: rgba(244, 162, 97, 0.12);
+      top: -120px; left: -80px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(61, 134, 255, 0.1);
+      bottom: -60px; right: -40px;
+    }
+    .brand {
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-family: 'Cairo', sans-serif;
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-line {
+      width: 90px;
+      height: 5px;
+      background: var(--orange);
+      margin: 0 auto 1.4rem;
+      border-radius: 3px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: #c8e6c9;
+      max-width: 620px;
+      margin: 0 auto 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ========== CONTAINER ========== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* ========== SECTION ========== */
+    section {
+      margin-bottom: 3.2rem;
+      background: var(--cream-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--forest);
+      color: white;
+      padding: 1.1rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-header .num {
+      background: var(--orange);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .accent-line {
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+    }
+    .section-body {
+      padding: 1.6rem 1.6rem 1.8rem;
+    }
+
+    /* ========== INTRO TEXT ========== */
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ========== GOAL CARDS (2x2) ========== */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+    .goal-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.3rem 1.2rem;
+      border-right: 5px solid;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .goal-card:hover { transform: translateY(-3px); }
+    .goal-card.green { border-color: var(--green); }
+    .goal-card.blue { border-color: var(--blue); }
+    .goal-card.orange { border-color: var(--orange); }
+    .goal-card.sage { border-color: var(--sage); }
+    .goal-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+      color: white;
+    }
+    .goal-card.green .goal-icon { background: var(--green); }
+    .goal-card.blue .goal-icon { background: var(--blue); }
+    .goal-card.orange .goal-icon { background: var(--orange); }
+    .goal-card.sage .goal-icon { background: var(--sage); }
+    .goal-card h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+      color: var(--dark);
+    }
+    .goal-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* ========== BENEFIT LIST ========== */
+    .benefit-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.15rem 1.2rem;
+      margin-bottom: 0.9rem;
+    }
+    .benefit-item:last-child { margin-bottom: 0; }
+    .benefit-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .benefit-item:nth-child(1) .benefit-num { background: var(--green); }
+    .benefit-item:nth-child(2) .benefit-num { background: var(--blue); }
+    .benefit-item:nth-child(3) .benefit-num { background: var(--orange); }
+    .benefit-item h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    .benefit-item p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* ========== STATS ========== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-box {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.4rem 0.8rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: 'Cairo', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-box:nth-child(1) .stat-value { color: var(--green); }
+    .stat-box:nth-child(2) .stat-value { color: var(--blue); }
+    .stat-box:nth-child(3) .stat-value { color: var(--orange); }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .details-box {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+    }
+    .details-box h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.7rem;
+      color: var(--dark);
+    }
+    .details-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .details-box li {
+      position: relative;
+      padding-right: 1.3rem;
+      margin-bottom: 0.55rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .details-box li::before {
+      content: '●';
+      position: absolute;
+      right: 0;
+      color: var(--orange);
+      font-size: 0.7rem;
+      top: 0.35rem;
+    }
+
+    /* ========== 3 COLUMNS ========== */
+    .three-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+    .col-card {
+      background: var(--cream);
+      border-radius: 12px;
+      overflow: hidden;
+      border-top: 5px solid;
+    }
+    .col-card.green { border-color: var(--green); }
+    .col-card.blue { border-color: var(--blue); }
+    .col-card.orange { border-color: var(--orange); }
+    .col-icon-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 1.3rem 0 0.6rem;
+    }
+    .col-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+    .col-card.green .col-icon { background: var(--green); }
+    .col-card.blue .col-icon { background: var(--blue); }
+    .col-card.orange .col-icon { background: var(--orange); }
+    .col-card h3 {
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+      padding: 0 0.8rem;
+    }
+    .col-card ul {
+      list-style: none;
+      padding: 0 1.2rem 1.3rem;
+    }
+    .col-card li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+      padding-right: 1rem;
+      position: relative;
+    }
+    .col-card li::before {
+      content: '•';
+      position: absolute;
+      right: 0;
+      color: var(--orange);
+    }
+
+    /* ========== TWO COLUMNS (Learning) ========== */
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 700px) {
+      .two-cols { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+    }
+    .panel {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .panel-header {
+      padding: 0.85rem 1.2rem;
+      color: white;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .panel.green .panel-header { background: var(--green); }
+    .panel.blue .panel-header { background: var(--blue); }
+    .panel ul {
+      list-style: none;
+      padding: 1.1rem 1.3rem 1.3rem;
+    }
+    .panel li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: var(--dark);
+    }
+    .panel li:last-child { margin-bottom: 0; }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .panel.green .dot { background: var(--green); }
+    .panel.blue .dot { background: var(--blue); }
+
+    /* ========== VR HIGHLIGHT ========== */
+    .vr-banner {
+      background: linear-gradient(135deg, var(--blue), #2a6bbf);
+      color: white;
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+    }
+    .vr-banner .icon {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .vr-banner p {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      line-height: 1.45;
+    }
+    .vr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .vr-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+    }
+    .vr-card .icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .vr-card:nth-child(1) .icon { background: var(--sky); }
+    .vr-card:nth-child(2) .icon { background: var(--orange); }
+    .vr-card:nth-child(3) .icon { background: var(--green); }
+    .vr-card:nth-child(4) .icon { background: var(--gold); }
+    .vr-card h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+    .vr-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ========== STEPS ========== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .step {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.4rem 1rem;
+      text-align: center;
+    }
+    .step-num {
+      width: 48px; height: 48px;
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin: 0 auto 0.8rem;
+    }
+    .step h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .step p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ========== LANG + UI ========== */
+    .lang-ui {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 700px) {
+      .lang-ui { grid-template-columns: 1fr; }
+    }
+    .info-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+    }
+    .info-card .big-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: white;
+      margin: 0 auto 1rem;
+    }
+    .info-card.lang .big-icon { background: var(--blue); }
+    .info-card.ui .big-icon { background: var(--orange); }
+    .info-card h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .info-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .info-card ul {
+      list-style: none;
+      text-align: right;
+      padding: 0 0.5rem;
+    }
+    .info-card li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+      padding-right: 1.1rem;
+      position: relative;
+    }
+    .info-card li::before {
+      content: '●';
+      position: absolute;
+      right: 0;
+      color: var(--orange);
+      font-size: 0.65rem;
+      top: 0.4rem;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ========== PRACTICAL ========== */
+    .practical-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .prac-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.3rem 0.9rem;
+      text-align: center;
+    }
+    .prac-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: white;
+      margin: 0 auto 0.7rem;
+    }
+    .prac-card:nth-child(1) .prac-icon { background: var(--green); }
+    .prac-card:nth-child(2) .prac-icon { background: var(--blue); }
+    .prac-card:nth-child(3) .prac-icon { background: var(--orange); }
+    .prac-card:nth-child(4) .prac-icon { background: var(--sky); }
+    .prac-card:nth-child(5) .prac-icon { background: var(--sage); }
+    .prac-card:nth-child(6) .prac-icon { background: var(--gold); }
+    .prac-card h3 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .prac-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ========== CONCLUSION ========== */
+    .conclusion {
+      background: linear-gradient(135deg, var(--forest), var(--green));
+      color: white;
+      border-radius: var(--radius);
+      padding: 2.5rem 1.8rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .conclusion::before {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(244, 162, 97, 0.1);
+      top: -80px; left: -60px;
+    }
+    .conclusion h2 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+    .conclusion .line {
+      width: 70px;
+      height: 4px;
+      background: var(--orange);
+      margin-bottom: 1.2rem;
+      border-radius: 2px;
+      position: relative;
+    }
+    .conclusion > p {
+      font-size: 1.02rem;
+      color: #c8e6c9;
+      margin-bottom: 1.3rem;
+      position: relative;
+      max-width: 700px;
+    }
+    .conclusion ul {
+      list-style: none;
+      position: relative;
+    }
+    .conclusion li {
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+      padding-right: 1.6rem;
+      position: relative;
+    }
+    .conclusion li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--forest);
+      color: white;
+      text-align: center;
+      padding: 2.8rem 1.5rem 2.2rem;
+      margin-top: 1rem;
+    }
+    footer h2 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    footer .line {
+      width: 70px;
+      height: 4px;
+      background: var(--orange);
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    footer .brand-footer {
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    footer .tags {
+      color: #a8d5a2;
+      font-size: 0.95rem;
+    }
+
+    /* ========== SCROLL NAV (optional) ========== */
+    .nav-dots {
+      position: fixed;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    .nav-dots a {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--rule);
+      transition: all 0.2s;
+    }
+    .nav-dots a:hover,
+    .nav-dots a.active {
+      background: var(--orange);
+      transform: scale(1.3);
+    }
+    @media (max-width: 900px) {
+      .nav-dots { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <div class="brand">PepsiCo  ×  Altura</div>
+    <h1>تدريب مشغلي آلات<br>حصاد البطاطس</h1>
+    <div class="hero-line"></div>
+    <p>برنامج تدريبي تفاعلي باستخدام تقنية الواقع الافتراضي<br>لتحسين جودة المحصول وتقليل الخسائر</p>
+    <div class="hero-tags">
+      <span class="tag">بيئة آمنة</span>
+      <span class="tag">تفاعلية</span>
+      <span class="tag">عملية</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 1. مقدمة -->
+    <section id="s1">
+      <div class="section-header">
+        <span class="num">١</span>
+        <h2>المقدمة والأهداف</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <p class="lead">تم تطوير هذا التدريب بالتعاون بين <strong>PepsiCo</strong> و <strong>Altura</strong> بهدف تدريب مشغلي آلات حصاد البطاطس على:</p>
+        <div class="goals-grid">
+          <div class="goal-card green">
+            <div class="goal-icon">🛡️</div>
+            <h3>تقليل الكدمات</h3>
+            <p>حماية البطاطس أثناء الحصاد من الأضرار الميكانيكية</p>
+          </div>
+          <div class="goal-card blue">
+            <div class="goal-icon">📈</div>
+            <h3>تحسين الجودة</h3>
+            <p>رفع مستوى المنتج النهائي وتقليل نسبة التالف</p>
+          </div>
+          <div class="goal-card orange">
+            <div class="goal-icon">🎯</div>
+            <h3>خفض الخسائر</h3>
+            <p>تقليل التكاليف الناتجة عن تلف المحصول</p>
+          </div>
+          <div class="goal-card sage">
+            <div class="goal-icon">⚙️</div>
+            <h3>رفع الكفاءة</h3>
+            <p>تحسين تشغيل وصيانة المعدات بشكل مستمر</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. أهمية -->
+    <section id="s2">
+      <div class="section-header">
+        <span class="num">٢</span>
+        <h2>أهمية التدريب</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <p class="lead">أكد المحاضر أن أهم فائدة لشركة PepsiCo هي:</p>
+        <div class="benefit-item">
+          <div class="benefit-num">01</div>
+          <div>
+            <h3>تقليل الكدمات</h3>
+            <p>تقليل الكدمات التي تتعرض لها البطاطس أثناء عملية الحصاد والنقل</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-num">02</div>
+          <div>
+            <h3>تجنب الخسائر المالية</h3>
+            <p>تقليل التكاليف والخسائر الناتجة عن تلف المحصول وضعف الجودة</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-num">03</div>
+          <div>
+            <h3>تمكين المشغلين</h3>
+            <p>تمكين المشغلين من التعرف على المشكلات أثناء التشغيل واتخاذ الإجراءات التصحيحية المناسبة فوراً</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. مكونات -->
+    <section id="s3">
+      <div class="section-header">
+        <span class="num">٣</span>
+        <h2>مكونات وهيكل التدريب</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <div class="stats">
+          <div class="stat-box">
+            <div class="stat-value">١٢</div>
+            <div class="stat-label">قسماً تدريبياً</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">٣</div>
+            <div class="stat-label">أجزاء رئيسية</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">٢</div>
+            <div class="stat-label">ساعة تقريباً</div>
+          </div>
+        </div>
+        <div class="details-box">
+          <h3>تفاصيل الهيكل</h3>
+          <ul>
+            <li>كل جزء يحتوي على ٣ إلى ٤ فصول تدريبية</li>
+            <li>اختبارات تقييم بعد كل مرحلة للتأكد من استيعاب المتدرب</li>
+            <li>المدة الكاملة للتدريب حوالي ساعتين</li>
+            <li>تصميم متسلسل يضمن الانتقال التدريجي من المعرفة النظرية إلى التطبيق العملي</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. محتوى -->
+    <section id="s4">
+      <div class="section-header">
+        <span class="num">٤</span>
+        <h2>محتوى التدريب – نظرة عامة</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <p class="lead">يغطي التدريب جميع مراحل تشغيل آلة الحصاد:</p>
+        <div class="three-cols">
+          <div class="col-card green">
+            <div class="col-icon-wrap"><div class="col-icon">🌱</div></div>
+            <h3>أ. نظام الإدخال</h3>
+            <ul>
+              <li>ضبط نظام الإدخال بشكل صحيح</li>
+              <li>اختيار الإعدادات المناسبة</li>
+              <li>فهم تأثير الإعدادات الخاطئة</li>
+            </ul>
+          </div>
+          <div class="col-card blue">
+            <div class="col-icon-wrap"><div class="col-icon">🚜</div></div>
+            <h3>ب. أجزاء الآلة</h3>
+            <ul>
+              <li>التعرف على مكونات الآلة</li>
+              <li>فهم وظيفة كل جزء</li>
+              <li>معرفة طريقة التشغيل المثلى</li>
+            </ul>
+          </div>
+          <div class="col-card orange">
+            <div class="col-icon-wrap"><div class="col-icon">🔧</div></div>
+            <h3>ج. الصيانة والتشغيل</h3>
+            <ul>
+              <li>ضبط عملية الحصاد على الجرار</li>
+              <li>إجراءات الصيانة الأساسية</li>
+              <li>تحسين أداء الآلة أثناء التشغيل</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. أسلوب التعلم -->
+    <section id="s5">
+      <div class="section-header">
+        <span class="num">٥</span>
+        <h2>أسلوب التعلم التفاعلي</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <p class="lead">التدريب مصمم خصيصاً للمشغلين ويعتمد على رؤية المشكلات بشكل مباشر:</p>
+        <div class="two-cols">
+          <div class="panel green">
+            <div class="panel-header">ما يعرضه التدريب</div>
+            <ul>
+              <li><span class="dot"></span> الأداء الجيد</li>
+              <li><span class="dot"></span> الأداء غير الجيد</li>
+              <li><span class="dot"></span> أسباب المشكلات</li>
+              <li><span class="dot"></span> طرق المعالجة والتصحيح</li>
+            </ul>
+          </div>
+          <div class="panel blue">
+            <div class="panel-header">أسئلة توجيهية للمتدرب</div>
+            <ul>
+              <li><span class="dot"></span> هل ما أراه صحيح أم خاطئ؟</li>
+              <li><span class="dot"></span> ما سبب المشكلة؟</li>
+              <li><span class="dot"></span> ما الإجراء المطلوب لتصحيحها؟</li>
+              <li><span class="dot"></span> كيف يجب أن يبدو الوضع المثالي؟</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VR -->
+    <section id="s6">
+      <div class="section-header">
+        <span class="num">٦</span>
+        <h2>تقنية الواقع الافتراضي (VR)</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <div class="vr-banner">
+          <div class="icon">🥽</div>
+          <p>من أهم مميزات التدريب: إمكانية الدخول داخل الآلة افتراضياً والتنقل بحرية</p>
+        </div>
+        <div class="vr-grid">
+          <div class="vr-card">
+            <div class="icon">👁️</div>
+            <div>
+              <h3>مشاهدة حركة البطاطس</h3>
+              <p>تتبع مسار البطاطس داخل المعدات بشكل حي</p>
+            </div>
+          </div>
+          <div class="vr-card">
+            <div class="icon">👆</div>
+            <div>
+              <h3>استكشاف الأماكن الصعبة</h3>
+              <p>الدخول إلى أماكن يستحيل الوصول إليها في الواقع</p>
+            </div>
+          </div>
+          <div class="vr-card">
+            <div class="icon">🛡️</div>
+            <div>
+              <h3>بيئة آمنة ١٠٠٪</h3>
+              <p>التدريب آمن تماماً بينما الواقع قد يكون خطيراً</p>
+            </div>
+          </div>
+          <div class="vr-card">
+            <div class="icon">💡</div>
+            <div>
+              <h3>تعلم عملي فوري</h3>
+              <p>تجربة المشكلات والحلول دون مخاطر</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. خطوات -->
+    <section id="s7">
+      <div class="section-header">
+        <span class="num">٧</span>
+        <h2>خطوات بدء التدريب</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-num">١</div>
+            <h3>ارتداء النظارة</h3>
+            <p>ارتداء نظارة الواقع الافتراضي</p>
+          </div>
+          <div class="step">
+            <div class="step-num">٢</div>
+            <h3>اختيار الآلة</h3>
+            <p>اختيار نوع آلة الحصاد</p>
+          </div>
+          <div class="step">
+            <div class="step-num">٣</div>
+            <h3>اختيار اللغة</h3>
+            <p>تحديد اللغة المناسبة</p>
+          </div>
+          <div class="step">
+            <div class="step-num">٤</div>
+            <h3>المقدمة</h3>
+            <p>مشاهدة مقدمة تعريفية قصيرة</p>
+          </div>
+          <div class="step">
+            <div class="step-num">٥</div>
+            <h3>التنقل</h3>
+            <p>بدء التنقل داخل الماكينة</p>
+          </div>
+          <div class="step">
+            <div class="step-num">٦</div>
+            <h3>المتابعة</h3>
+            <p>متابعة التعليمات المكتوبة والصوتية</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. لغات وواجهة -->
+    <section id="s8">
+      <div class="section-header">
+        <span class="num">٨</span>
+        <h2>اللغات وواجهة المستخدم</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <div class="lang-ui">
+          <div class="info-card lang">
+            <div class="big-icon">🌐</div>
+            <h3>١١ لغة متاحة</h3>
+            <p>التدريب متوفر بـ ١١ لغة مختلفة<br>تم تنفيذ العرض التوضيحي باللغة الإنجليزية</p>
+            <span class="badge">دعم لغوي شامل</span>
+          </div>
+          <div class="info-card ui">
+            <div class="big-icon">🖱️</div>
+            <h3>واجهة المستخدم</h3>
+            <ul>
+              <li>لوحة تحكم زرقاء واضحة</li>
+              <li>أسهم توجيه للتنقل</li>
+              <li>قوائم تفاعلية سهلة</li>
+              <li>تعليمات صوتية ونصية</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. تطبيق عملي -->
+    <section id="s9">
+      <div class="section-header">
+        <span class="num">٩</span>
+        <h2>التطبيق العملي أثناء العرض</h2>
+      </div>
+      <div class="accent-line"></div>
+      <div class="section-body">
+        <p class="lead">خلال العرض التوضيحي قام أحد المشاركين بـ:</p>
+        <div class="practical-grid">
+          <div class="prac-card">
+            <div class="prac-icon">🥽</div>
+            <h3>ارتداء النظارة</h3>
+            <p>تجربة الواقع الافتراضي بشكل مباشر</p>
+          </div>
+          <div class="prac-card">
+            <div class="prac-icon">🚜</div>
+            <h3>التعرف على الآلة</h3>
+            <p>تعلم التعرف على الآلة والجرار</p>
+          </div>
+          <div class="prac-card">
+            <div class="prac-icon">👁️</div>
+            <h3>استكشاف المنصة</h3>
+            <p>استكشاف المنصة وأجزاء المعدة</p>
+          </div>
+          <div class="prac-card">
+            <div class="prac-icon">🎮</div>
+            <h3>استخدام التحكم</h3>
+            <p>استخدام وحدة التحكم للتفاعل</p>
+          </div>
+          <div class="prac-card">
+            <div class="prac-icon">▶️</div>
+            <h3>التدرب على التنقل</h3>
+            <p>التدرب على التنقل واختيار العناصر</p>
+          </div>
+          <div class="prac-card">
+            <div class="prac-icon">🎓</div>
+            <h3>اكتساب المهارة</h3>
+            <p>بناء الثقة قبل العمل في الحقل</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- خلاصة -->
+    <div class="conclusion" id="s10">
+      <h2>الخلاصة</h2>
+      <div class="line"></div>
+      <p>يهدف هذا البرنامج التدريبي إلى تحسين مهارات مشغلي آلات حصاد البطاطس باستخدام تقنية الواقع الافتراضي، مع التركيز على:</p>
+      <ul>
+        <li>تقليل كدمات البطاطس وتحسين جودة المحصول</li>
+        <li>رفع كفاءة التشغيل والصيانة</li>
+        <li>تقليل الخسائر المالية</li>
+        <li>توفير بيئة آمنة وتفاعلية قبل العمل في الحقل الحقيقي</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h2>شكراً لكم</h2>
+    <div class="line"></div>
+    <div class="brand-footer">PepsiCo  ×  Altura</div>
+    <div class="tags">تدريب تفاعلي  •  واقع افتراضي  •  جودة أعلى</div>
+  </footer>
+
+</body>
+</html>

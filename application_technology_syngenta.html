@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تكنولوجيا التطبيق | Application Technology - James | Syngenta</title>
+<style>
+  :root {
+    --primary: #2e7d32;
+    --primary-dark: #1b5e20;
+    --primary-light: #81c784;
+    --accent: #ff8f00;
+    --accent-light: #ffca28;
+    --bg: #f1f8e9;
+    --card: #ffffff;
+    --text: #1b3a1b;
+    --muted: #558b2f;
+    --danger: #c62828;
+    --info: #0277bd;
+    --purple: #6a1b9a;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 50%, #fff8e1 100%);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(46, 125, 50, 0.15);
+    overflow: hidden;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: pulse 8s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header .subtitle {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+  }
+
+  header .speaker {
+    margin-top: 18px;
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Content */
+  .content {
+    padding: 35px 30px 50px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 45px;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .section-number {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 1.45rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+
+  /* Divider line under each section transition */
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary-light));
+    border-radius: 4px;
+    margin: 30px 0 40px;
+    opacity: 0.85;
+  }
+
+  /* Cards & Boxes */
+  .card {
+    background: #f9fbe7;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 16px 0;
+    border-right: 5px solid var(--primary);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  }
+
+  .card.warning {
+    background: #fff3e0;
+    border-right-color: var(--accent);
+  }
+
+  .card.danger {
+    background: #ffebee;
+    border-right-color: var(--danger);
+  }
+
+  .card.info {
+    background: #e3f2fd;
+    border-right-color: var(--info);
+  }
+
+  .card.purple {
+    background: #f3e5f5;
+    border-right-color: var(--purple);
+  }
+
+  /* Lists */
+  ul, ol {
+    padding-right: 22px;
+    margin: 12px 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  .check {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .cross {
+    color: var(--danger);
+    font-weight: 700;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  }
+
+  th {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 14px 16px;
+    text-align: right;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 13px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  tr:nth-child(even) td {
+    background: #f1f8e9;
+  }
+
+  /* Highlight boxes */
+  .highlight {
+    background: linear-gradient(90deg, #c8e6c9, #fff9c4);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin: 18px 0;
+    font-weight: 600;
+    border: 2px dashed var(--primary);
+  }
+
+  /* Diagram boxes */
+  .diagram {
+    background: white;
+    border: 2px solid var(--primary-light);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .diagram-title {
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  .flow-item {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(46,125,50,0.25);
+  }
+
+  .flow-arrow {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  .balance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .balance-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    border-top: 5px solid;
+    transition: transform 0.2s;
+  }
+
+  .balance-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .balance-card.efficacy { border-top-color: var(--primary); }
+  .balance-card.efficiency { border-top-color: var(--accent); }
+  .balance-card.environment { border-top-color: var(--info); }
+
+  .balance-card .icon {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+  }
+
+  .balance-card h4 {
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+  }
+
+  /* Key factors visual */
+  .factors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+
+  .factor {
+    background: linear-gradient(145deg, #e8f5e9, #fff);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #c8e6c9;
+  }
+
+  .factor .num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  /* Recommendation badge */
+  .reco {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 4px 0;
+  }
+
+  /* Final message */
+  .final-message {
+    background: linear-gradient(135deg, var(--primary-dark), #33691e);
+    color: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.3);
+  }
+
+  .final-message h3 {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+
+  /* Copy button */
+  .copy-bar {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 100;
+  }
+
+  .copy-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(46,125,50,0.4);
+  }
+
+  .copy-btn.copied {
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    background: #f1f8e9;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6rem; }
+    .section-title { font-size: 1.2rem; }
+    .content { padding: 25px 16px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Sticky Copy Bar -->
+  <div class="copy-bar">
+    <span style="font-weight:600; color:var(--primary-dark);">📋 محاضرة تكنولوجيا التطبيق – Syngenta</span>
+    <button class="copy-btn" onclick="copyAll()">نسخ كامل المحتوى</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>تكنولوجيا التطبيق</h1>
+    <div class="subtitle">Application Technology</div>
+    <div class="speaker">🎤 المتحدث: James – Syngenta</div>
+  </header>
+
+  <div class="content" id="lecture-content">
+
+    <!-- 1 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <h2 class="section-title">ما هي تكنولوجيا التطبيق (Application Technology)؟</h2>
+      </div>
+
+      <div class="card">
+        <p><strong>هي العملية الكاملة التي تضمن انتقال منتج حماية المحاصيل:</strong></p>
+        <div class="flow">
+          <div class="flow-item">من العبوة</div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-item">إلى خزان الرش</div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-item">إلى النبات المستهدف</div>
+        </div>
+      </div>
+
+      <p style="margin:18px 0 10px; font-weight:600;">تتكون من ثلاثة أجزاء رئيسية:</p>
+      <ol>
+        <li>تخزين ونقل منتجات حماية المحاصيل</li>
+        <li>الخلط والتعبئة</li>
+        <li>عملية الرش والتطبيق الفعلي على المحصول</li>
+      </ol>
+
+      <div class="card info">
+        <strong>كما تشمل:</strong>
+        <ul>
+          <li>إدارة البقايا المتبقية بعد الرش</li>
+          <li>تنظيف معدات الرش</li>
+          <li>التخلص الآمن من المنتجات الزائدة</li>
+          <li>تقنيات التطبيق الدقيق (Precision Application)</li>
+          <li>تطبيقات الطائرات المسيرة (Drone Application)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <h2 class="section-title">لماذا تعتبر تكنولوجيا التطبيق مهمة؟</h2>
+      </div>
+
+      <div class="highlight">
+        لتحقيق فعالية كاملة للمبيد:<br>
+        <span style="font-size:1.3rem;">50%</span> من النجاح يعتمد على اختيار المنتج الصحيح<br>
+        <span style="font-size:1.3rem;">50%</span> من النجاح يعتمد على طريقة تطبيق المنتج
+      </div>
+
+      <p style="font-weight:600; margin-top:16px;">العوامل المؤثرة تشمل:</p>
+      <div class="factors">
+        <div class="factor">⏰ توقيت الرش</div>
+        <div class="factor">🌤️ الأحوال الجوية</div>
+        <div class="factor">⚙️ إعدادات الرشاش</div>
+        <div class="factor">🔩 اختيار الفوهة</div>
+        <div class="factor">💧 حجم القطرات</div>
+        <div class="factor">💦 حجم المياه</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <h2 class="section-title">الفجوة بين التجارب البحثية والواقع الزراعي</h2>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--primary-dark); margin-bottom:10px;">🔬 في التجارب البحثية</h4>
+        <p>يتم الرش عادة باستخدام:</p>
+        <ul>
+          <li>200 لتر ماء / هكتار</li>
+          <li>سرعة سير 3.6 كم/ساعة</li>
+          <li>قطرات دقيقة جداً</li>
+          <li>ظروف مثالية</li>
+        </ul>
+        <p style="margin-top:10px;"><span class="check">✅ تغطية ممتازة</span> &nbsp;|&nbsp; <span class="check">✅ فعالية مرتفعة جداً</span></p>
+      </div>
+
+      <div class="card warning">
+        <h4 style="color:var(--accent); margin-bottom:10px;">🌾 في الحقول الزراعية</h4>
+        <p>توجد متغيرات كثيرة:</p>
+        
+        <p><strong>حجم المياه يتراوح بين:</strong></p>
+        <ul>
+          <li>2 لتر/هكتار (بعض التطبيقات الخاصة)</li>
+          <li>50 لتر/هكتار</li>
+          <li>400 لتر/هكتار</li>
+          <li>3000 لتر/هكتار في اليابان</li>
+        </ul>
+
+        <p><strong>سرعة العمل:</strong> من 6 كم/ساعة إلى 60 كم/ساعة أو أكثر</p>
+
+        <p><strong>عوامل أخرى:</strong></p>
+        <ul>
+          <li>اهتزاز أذرع الرش (Boom)</li>
+          <li>اختلاف ارتفاع البوم</li>
+          <li>التغيرات الجوية</li>
+          <li>قوانين الحد من الانجراف (Drift)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <h2 class="section-title">الموازنة بين ثلاثة أهداف رئيسية</h2>
+      </div>
+
+      <p style="margin-bottom:16px;">أي عملية رش ناجحة يجب أن توازن بين:</p>
+
+      <div class="balance-grid">
+        <div class="balance-card efficacy">
+          <div class="icon">🎯</div>
+          <h4>الفعالية (Efficacy)</h4>
+          <p>الحصول على أفضل مكافحة للأمراض والآفات والأعشاب</p>
+        </div>
+        <div class="balance-card efficiency">
+          <div class="icon">⚡</div>
+          <h4>الكفاءة (Efficiency)</h4>
+          <p>تغطية مساحات أكبر • زيادة إنتاجية الرشاش • تقليل الوقت والتكاليف</p>
+        </div>
+        <div class="balance-card environment">
+          <div class="icon">🌍</div>
+          <h4>حماية البيئة</h4>
+          <p>منع انجراف المبيد • حماية المجاري المائية • حماية المناطق المجاورة • تقليل فقد المنتج</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 5 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <h2 class="section-title">مشكلة انجراف الرش (Spray Drift)</h2>
+      </div>
+
+      <div class="card danger">
+        <p><strong>الانجراف يحدث عندما تنتقل القطرات خارج المنطقة المستهدفة.</strong></p>
+        <p style="margin-top:10px;">قد يؤدي إلى:</p>
+        <ul>
+          <li>إتلاف محاصيل الجيران</li>
+          <li>تلوث البيئة</li>
+          <li>مشاكل قانونية</li>
+          <li>خسائر مالية</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <strong>📌 مثال من بريطانيا:</strong><br>
+        استخدام جليفوسات → انتقال الرذاذ عبر السياج النباتي → تضرر محصول مجاور لمسافة <strong>36 متر</strong>.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <h2 class="section-title">أهم 4 عوامل لتحسين الرش</h2>
+      </div>
+
+      <!-- 6.1 -->
+      <div class="card">
+        <h4 style="color:var(--primary-dark);">1. سرعة التقدم (Forward Speed)</h4>
+        <p>كلما ارتفعت السرعة:</p>
+        <ul>
+          <li>زاد الاضطراب الهوائي</li>
+          <li>زادت حركة الرشاش</li>
+          <li>تدهور توزيع القطرات</li>
+          <li>زاد الانجراف</li>
+        </ul>
+        <span class="reco">✅ التوصية: خفض سرعة التقدم قدر الإمكان</span>
+      </div>
+
+      <!-- 6.2 -->
+      <div class="card">
+        <h4 style="color:var(--primary-dark);">2. ارتفاع البوم (Boom Height)</h4>
+        <p>الارتفاع المثالي: <strong style="font-size:1.3rem; color:var(--primary);">50 سم</strong></p>
+        <p>لفوهات الرش القياسية ذات زاوية 110°.</p>
+        <p>لماذا؟ لأنها تعطي تداخل رش مثالي + توزيع منتظم + انجراف أقل.</p>
+        
+        <div class="highlight" style="margin-top:14px;">
+          ⚠️ معلومة مهمة: رفع البوم من 50 سم → 100 سم قد يزيد الانجراف بحوالي <strong>10 مرات</strong>
+        </div>
+      </div>
+
+      <!-- 6.3 -->
+      <div class="card">
+        <h4 style="color:var(--primary-dark);">3. حجم المياه (Water Volume)</h4>
+        <p>هناك اختلاف عالمي كبير:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>الدولة</th>
+              <th>حجم المياه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>هولندا</td><td>400 لتر/هكتار</td></tr>
+            <tr><td>الأرجنتين والبرازيل</td><td>30 لتر/هكتار</td></tr>
+            <tr><td>اليابان</td><td>3000 لتر/هكتار</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:14px;"><strong>تأثير حجم المياه:</strong></p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
+          <div style="background:#e8f5e9; padding:12px; border-radius:10px;">
+            <strong>زيادة حجم المياه</strong><br>
+            <span class="check">✅ تغطية أعلى</span><br>
+            <span class="check">✅ فعالية أفضل للمواد التلامسية</span><br>
+            <span class="cross">❌ كفاءة أقل</span><br>
+            <span class="cross">❌ إعادة تعبئة أكثر</span>
+          </div>
+          <div style="background:#fff3e0; padding:12px; border-radius:10px;">
+            <strong>تقليل حجم المياه</strong><br>
+            <span class="check">✅ تغطية مساحات أكبر</span><br>
+            <span class="check">✅ كفاءة تشغيلية أعلى</span><br>
+            <span class="cross">❌ تغطية أقل</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 7 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <h2 class="section-title">تأثير حجم القطرات (Droplet Size)</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="card">
+          <h4>القطرات الدقيقة</h4>
+          <p><span class="check">✅ تغطية عالية</span></p>
+          <p><span class="cross">❌ انجراف مرتفع</span></p>
+          <p><span class="cross">❌ اختراق أقل للمجموع الخضري</span></p>
+        </div>
+        <div class="card">
+          <h4>القطرات الكبيرة</h4>
+          <p><span class="check">✅ اختراق أفضل للنبات</span></p>
+          <p><span class="check">✅ انجراف أقل</span></p>
+          <p><span class="cross">❌ تغطية أقل</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 8 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <h2 class="section-title">تأثير الضغط (Pressure)</h2>
+      </div>
+
+      <div class="card info">
+        <p>زيادة الضغط تؤدي إلى:</p>
+        <ul>
+          <li>قطرات أصغر</li>
+          <li>تغطية أفضل</li>
+        </ul>
+        <p style="margin-top:10px;">لكن → خطر انجراف أكبر.</p>
+        <p><strong>يجب إيجاد التوازن المناسب.</strong></p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 9 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">9</div>
+        <h2 class="section-title">أهمية اختيار الفوهة (Nozzle Selection)</h2>
+      </div>
+
+      <div class="card">
+        <p>اختيار الفوهة يؤثر على:</p>
+        <ul>
+          <li>توزيع الرش</li>
+          <li>الاختراق داخل النبات</li>
+          <li>التغطية</li>
+          <li>مستوى الانجراف</li>
+        </ul>
+        <p style="margin-top:12px;">كل محصول قد يحتاج فوهة مختلفة:</p>
+        <div class="factors">
+          <div class="factor">🥔 البطاطس</div>
+          <div class="factor">🌾 القمح</div>
+          <div class="factor">🥕 الجزر</div>
+          <div class="factor">⛳ ملاعب الجولف</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 10 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">10</div>
+        <h2 class="section-title">الفوهات المائلة (Angled Nozzles)</h2>
+      </div>
+
+      <div class="card purple">
+        <p><strong>من أهم ما ركزت عليه المحاضرة.</strong></p>
+        <p>بدلاً من الرش العمودي → يتم توجيه الرش بزاوية.</p>
+      </div>
+
+      <p style="font-weight:600; margin:14px 0 8px;">الفوائد:</p>
+      <ul>
+        <li><span class="check">✅</span> اختراق أفضل للمجموع الخضري</li>
+        <li><span class="check">✅</span> وصول أفضل للسطح السفلي للأوراق</li>
+        <li><span class="check">✅</span> مكافحة أفضل للحشرات والأمراض</li>
+        <li><span class="check">✅</span> زيادة ترسيب المبيد داخل النبات</li>
+      </ul>
+
+      <div class="card">
+        <strong>مثال عملي في البطاطس:</strong><br>
+        عند مكافحة اللفحة المتأخرة (Late Blight) والحشرات → أظهرت التجارب أن <strong>الفوهات المائلة أعطت مكافحة أفضل بكثير</strong> من الفوهات العمودية.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 11 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">11</div>
+        <h2 class="section-title">فوهة Syngenta 3D90</h2>
+      </div>
+
+      <div class="card" style="border-right-color:#2e7d32; background:linear-gradient(to left,#e8f5e9,#fff);">
+        <h4 style="color:var(--primary-dark);">مميزات فوهة 3D90:</h4>
+        <ul>
+          <li>زاوية 55° محسوبة بدقة</li>
+          <li>تقليل انجراف حتى <strong>90%</strong></li>
+          <li>اختراق جيد للمجموع الخضري</li>
+          <li>مناسبة لمبيدات البطاطس</li>
+          <li>مناسبة للمبيدات قبل الإنبات</li>
+          <li>متوافقة مع أنظمة PWM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 12 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">12</div>
+        <h2 class="section-title">إضافات تقليل الانجراف (Drift Retardants)</h2>
+      </div>
+
+      <div class="card info">
+        <p>مواد تضاف إلى محلول الرش لتقليل الانجراف.</p>
+        <p style="margin-top:10px;"><strong>الفوائد:</strong></p>
+        <ul>
+          <li><span class="check">✅</span> تكبير حجم القطرات</li>
+          <li><span class="check">✅</span> تحسين الثبات</li>
+          <li><span class="check">✅</span> زيادة التغطية أحياناً</li>
+          <li><span class="check">✅</span> تقليل الفقد</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 13 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">13</div>
+        <h2 class="section-title">الأدوات الرقمية الحديثة</h2>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--primary-dark);">📱 Cropwise</h4>
+        <p>منصة رقمية من Syngenta تساعد على:</p>
+        <ul>
+          <li>تحديد أفضل توقيت للرش</li>
+          <li>اختيار الفوهة المناسبة</li>
+          <li>تحديد حجم المياه</li>
+          <li>ضبط ارتفاع البوم</li>
+          <li>حفظ سجلات الرش</li>
+          <li>إرشادات الخلط والتنظيف</li>
+        </ul>
+      </div>
+
+      <div class="card purple">
+        <h4 style="color:var(--purple);">📷 نظام AccuSpray / Camera-Based Coverage Monitoring</h4>
+        <p>تقنية تعتمد على كاميرات أمام وخلف الرشاش، وتقوم بقياس:</p>
+        <ul>
+          <li>نسبة التغطية</li>
+          <li>توزيع القطرات</li>
+        </ul>
+        <p style="margin-top:8px;">في الوقت الحقيقي → مما يسمح بتعديل حجم المياه والفوهة وارتفاع البوم أثناء العمل مباشرة.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 14 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">14</div>
+        <h2 class="section-title">رأي المتحدث في الطائرات المسيّرة (Drones)</h2>
+      </div>
+
+      <div class="card">
+        <p>أوضح أن الطائرات المسيّرة:</p>
+        <p><span class="check">✅ أداة ممتازة في ظروف معينة</span></p>
+        <p>خاصة عندما تكون قدرات الرش التقليدية محدودة أو الحاجة للتطبيق السريع مرتفعة.</p>
+      </div>
+
+      <div class="highlight">
+        ⭐ <strong>أهم نقطة:</strong><br>
+        حتى مع وجود أفضل فوهة + أفضل حجم ماء + أفضل قطرات<br>
+        فإن <strong style="color:var(--primary-dark); font-size:1.15rem;">توقيت الرش هو العامل الأهم</strong><br>
+        لأن تطبيق المبيد في الوقت المناسب يظل مفتاح النجاح الأساسي.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- الخلاصة -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">✓</div>
+        <h2 class="section-title">الخلاصة النهائية</h2>
+      </div>
+
+      <p style="font-weight:600; margin-bottom:14px;">لتحقيق أفضل أداء للمبيد يجب التركيز على:</p>
+      <ol style="font-size:1.05rem;">
+        <li>ضبط سرعة التقدم</li>
+        <li>الحفاظ على ارتفاع البوم عند <strong>50 سم</strong></li>
+        <li>اختيار حجم المياه المناسب حسب نوع المبيد</li>
+        <li>اختيار الفوهة المناسبة للمحصول</li>
+        <li>استخدام الفوهات المائلة في البطاطس والمحاصيل الكثيفة</li>
+        <li>تقليل الانجراف لحماية البيئة والمحصول</li>
+        <li>الاستفادة من الأدوات الرقمية الحديثة</li>
+        <li>إعطاء أولوية قصوى لتوقيت الرش</li>
+      </ol>
+
+      <div class="final-message">
+        <h3>الرسالة الأساسية للمحاضرة</h3>
+        <p style="font-size:1.15rem; line-height:1.7;">
+          نجاح المبيد لا يعتمد فقط على جودة المنتج،<br>
+          بل يعتمد بالدرجة نفسها على <strong>كيفية تطبيقه على المحصول</strong>.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer>
+    محاضرة تكنولوجيا التطبيق | James – Syngenta<br>
+    تم تنظيمها وتصميمها بشكل إبداعي لسهولة القراءة والنسخ
+  </footer>
+</div>
+
+<script>
+function copyAll() {
+  const content = document.getElementById('lecture-content').innerText;
+  const header = `تكنولوجيا التطبيق (Application Technology)\nالمتحدث: James – Syngenta\n\n`;
+  const fullText = header + content;
+  
+  navigator.clipboard.writeText(fullText).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ تم النسخ بنجاح!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'نسخ كامل المحتوى';
+      btn.classList.remove('copied');
+    }, 2500);
+  }).catch(err => {
+    alert('حدث خطأ أثناء النسخ. يمكنك تحديد النص يدوياً.');
+  });
+}
+</script>
+</body>
+</html>

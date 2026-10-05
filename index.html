@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="description" content="منصة Agro University — ملخصات محاضرات بيبسيكو الزراعية أوفلاين" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Agro Uni" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>Agro University | منصة بيبسيكو الزراعية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0f5f2;
+      --card: #ffffff;
+      --ink: #0f1f18;
+      --muted: #5a6f64;
+      --green: #1a5f3a;
+      --green-dark: #0f3d2e;
+      --green-light: #e8f5e9;
+      --gold: #e9b949;
+      --accent: #2a9d8f;
+      --border: #d4e0d8;
+      --shadow: 0 8px 30px rgba(15,61,46,0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* Header */
+    .topbar {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: white;
+      padding: 18px 20px 22px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+    }
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .brand span {
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { background: rgba(255,255,255,0.28); }
+    .btn.install { background: var(--gold); color: #1a1a1a; border: none; }
+
+    /* Search & filters */
+    .controls {
+      max-width: 1100px;
+      margin: -12px auto 0;
+      padding: 0 16px;
+      position: relative;
+      z-index: 50;
+    }
+    .search-box {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 1.05rem;
+      background: transparent;
+      color: var(--ink);
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 16px 0 8px;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+    .chip {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .chip:hover, .chip.active {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+    }
+
+    /* Main */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .stat .val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1.1;
+    }
+    .stat .lbl {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Category sections */
+    .cat-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cat-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to left, transparent, var(--border));
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(15,61,46,0.14);
+    }
+    .card-top {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: white;
+      padding: 20px 18px 16px;
+      position: relative;
+    }
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+    .card-top h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .card-top p {
+      font-size: 0.88rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .card-body {
+      padding: 14px 18px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .speaker {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .tag {
+      background: var(--green-light);
+      color: var(--green-dark);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* Empty state */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .empty .icon { font-size: 3rem; margin-bottom: 12px; }
+
+    /* Offline banner */
+    .offline-banner {
+      display: none;
+      background: #fff3cd;
+      color: #856404;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .offline-banner.show { display: block; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer strong { color: var(--green); }
+
+    /* Install prompt */
+    #install-prompt {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 16px;
+      right: 16px;
+      max-width: 400px;
+      margin: 0 auto;
+      background: var(--green-dark);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      z-index: 200;
+      align-items: center;
+      gap: 14px;
+    }
+    #install-prompt.show { display: flex; }
+    #install-prompt p { flex: 1; font-size: 0.95rem; }
+    #install-prompt button {
+      background: var(--gold);
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #install-prompt .close {
+      background: transparent;
+      color: white;
+      font-size: 1.2rem;
+      padding: 4px 8px;
+    }
+
+    /* Lecture viewer (iframe mode) */
+    #viewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 300;
+      flex-direction: column;
+    }
+    #viewer.open { display: flex; }
+    .viewer-bar {
+      background: var(--green-dark);
+      color: white;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .viewer-bar button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .viewer-bar h2 {
+      font-size: 1rem;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #viewer iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      background: white;
+    }
+
+    @media (max-width: 600px) {
+      .brand h1 { font-size: 1.05rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="offline-banner" id="offline-banner">📡 أنت الآن أوفلاين — المحتوى المحفوظ متاح بالكامل</div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-icon">🥔</div>
+        <div>
+          <h1>Agro University</h1>
+          <span>PepsiCo • منصة المحاضرات الزراعية</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="btn-refresh" title="تحديث القائمة">🔄 تحديث</button>
+        <button class="btn install" id="btn-install" style="display:none">📲 تثبيت التطبيق</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search & filters -->
+  <div class="controls">
+    <div class="search-box">
+      <span style="font-size:1.3rem">🔍</span>
+      <input type="search" id="search" placeholder="ابحث في المحاضرات، المتحدثين، المواضيع..." autocomplete="off" />
+    </div>
+    <div class="filters" id="filters">
+      <button class="chip active" data-cat="all">الكل</button>
+    </div>
+  </div>
+
+  <main>
+    <div class="stats-row" id="stats">
+      <div class="stat"><div class="val" id="stat-total">—</div><div class="lbl">محاضرة</div></div>
+      <div class="stat"><div class="val" id="stat-cats">—</div><div class="lbl">تصنيف</div></div>
+      <div class="stat"><div class="val">أوفلاين</div><div class="lbl">جاهز دائماً</div></div>
+      <div class="stat"><div class="val">PWA</div><div class="lbl">قابل للتثبيت</div></div>
+    </div>
+
+    <div id="content"></div>
+    <div class="empty" id="empty" style="display:none">
+      <div class="icon">🔎</div>
+      <p>لا توجد نتائج مطابقة</p>
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Agro University Platform</strong> — ملخصات منظمة من محاضرات PepsiCo Agro University</p>
+    <p style="margin-top:6px; font-size:0.85rem">تعمل أوفلاين • قابلة للتثبيت • تُحدَّث بإضافة ملفات جديدة</p>
+  </footer>
+
+  <!-- Install prompt -->
+  <div id="install-prompt">
+    <p>ثبّت المنصة كتطبيق للوصول السريع والأوفلاين</p>
+    <button id="install-confirm">تثبيت</button>
+    <button class="close" id="install-close">✕</button>
+  </div>
+
+  <!-- Viewer -->
+  <div id="viewer">
+    <div class="viewer-bar">
+      <button id="viewer-close" title="رجوع">→</button>
+      <h2 id="viewer-title">المحاضرة</h2>
+      <button id="viewer-open-tab" title="فتح في تبويب جديد">↗</button>
+    </div>
+    <iframe id="viewer-frame" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+  </div>
+
+  <script>
+    // ========== Data ==========
+    let lectures = [];
+    let currentCat = 'all';
+    let deferredPrompt = null;
+
+    const CATEGORY_ORDER = [
+      'استراتيجية', 'بذور', 'أصناف', 'إنتاج',
+      'تغذية وري', 'تخزين وجودة', 'أمراض وآفات',
+      'تكنولوجيا', 'تدريب'
+    ];
+
+    // ========== Load lectures ==========
+    async function loadLectures() {
+      try {
+        const res = await fetch('lectures.json?t=' + Date.now());
+        lectures = await res.json();
+        render();
+      } catch (e) {
+        console.error('Failed to load lectures.json', e);
+        document.getElementById('content').innerHTML =
+          '<div class="empty"><div class="icon">⚠️</div><p>تعذر تحميل قائمة المحاضرات. تأكد من وجود lectures.json</p></div>';
+      }
+    }
+
+    // ========== Render ==========
+    function render() {
+      const q = (document.getElementById('search').value || '').trim().toLowerCase();
+      let filtered = lectures.filter(l => {
+        const matchCat = currentCat === 'all' || l.category === currentCat;
+        if (!matchCat) return false;
+        if (!q) return true;
+        const hay = [l.title, l.subtitle, l.speaker, l.category, ...(l.tags || [])].join(' ').toLowerCase();
+        return hay.includes(q);
+      });
+
+      // Stats
+      document.getElementById('stat-total').textContent = lectures.length;
+      const cats = [...new Set(lectures.map(l => l.category))];
+      document.getElementById('stat-cats').textContent = cats.length;
+
+      // Filters
+      const filtersEl = document.getElementById('filters');
+      const existing = new Set([...filtersEl.querySelectorAll('.chip')].map(c => c.dataset.cat));
+      CATEGORY_ORDER.forEach(cat => {
+        if (!cats.includes(cat) || existing.has(cat)) return;
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.dataset.cat = cat;
+        btn.textContent = cat;
+        btn.addEventListener('click', () => setCat(cat));
+        filtersEl.appendChild(btn);
+      });
+
+      // Content by category
+      const content = document.getElementById('content');
+      const empty = document.getElementById('empty');
+      if (filtered.length === 0) {
+        content.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      const byCat = {};
+      filtered.forEach(l => {
+        if (!byCat[l.category]) byCat[l.category] = [];
+        byCat[l.category].push(l);
+      });
+
+      let html = '';
+      const order = currentCat === 'all' ? CATEGORY_ORDER : [currentCat];
+      order.forEach(cat => {
+        if (!byCat[cat] || !byCat[cat].length) return;
+        html += `<h2 class="cat-title">${cat}</h2><div class="grid">`;
+        byCat[cat].forEach(l => {
+          html += `
+            <a class="card" href="lectures/${encodeURIComponent(l.file)}" data-id="${l.id}" data-title="${escapeAttr(l.title)}" data-file="${escapeAttr(l.file)}">
+              <div class="card-top">
+                <div class="card-icon">${l.icon || '📄'}</div>
+                <h3>${escapeHtml(l.title)}</h3>
+                <p>${escapeHtml(l.subtitle || '')}</p>
+              </div>
+              <div class="card-body">
+                <div class="speaker">${escapeHtml(l.speaker || '')}</div>
+                <div class="tags">${(l.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+              </div>
+            </a>`;
+        });
+        html += '</div>';
+      });
+      content.innerHTML = html;
+
+      // Card click → open in viewer
+      content.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', e => {
+          e.preventDefault();
+          openViewer(card.dataset.file, card.dataset.title);
+        });
+      });
+    }
+
+    function setCat(cat) {
+      currentCat = cat;
+      document.querySelectorAll('.chip').forEach(c => {
+        c.classList.toggle('active', c.dataset.cat === cat);
+      });
+      render();
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function escapeAttr(s) {
+      return String(s).replace(/"/g, '&quot;');
+    }
+
+    // ========== Viewer ==========
+    const viewer = document.getElementById('viewer');
+    const frame = document.getElementById('viewer-frame');
+    let currentFile = '';
+
+    function openViewer(file, title) {
+      currentFile = file;
+      document.getElementById('viewer-title').textContent = title;
+      frame.src = 'lectures/' + encodeURIComponent(file);
+      viewer.classList.add('open');
+      history.pushState({ viewer: true }, '', '#lecture');
+    }
+    function closeViewer() {
+      viewer.classList.remove('open');
+      frame.src = 'about:blank';
+      if (location.hash === '#lecture') history.back();
+    }
+    document.getElementById('viewer-close').addEventListener('click', closeViewer);
+    document.getElementById('viewer-open-tab').addEventListener('click', () => {
+      if (currentFile) window.open('lectures/' + encodeURIComponent(currentFile), '_blank');
+    });
+    window.addEventListener('popstate', () => {
+      if (viewer.classList.contains('open')) closeViewer();
+    });
+
+    // ========== Search ==========
+    document.getElementById('search').addEventListener('input', () => render());
+    document.querySelectorAll('.chip').forEach(c => {
+      c.addEventListener('click', () => setCat(c.dataset.cat));
+    });
+
+    // ========== Offline detection ==========
+    function updateOnlineStatus() {
+      document.getElementById('offline-banner').classList.toggle('show', !navigator.onLine);
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+    // ========== PWA Install ==========
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('btn-install').style.display = 'inline-flex';
+      // Show bottom prompt after delay
+      setTimeout(() => {
+        if (deferredPrompt && !localStorage.getItem('install-dismissed')) {
+          document.getElementById('install-prompt').classList.add('show');
+        }
+      }, 4000);
+    });
+
+    function doInstall() {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => {
+        deferredPrompt = null;
+        document.getElementById('btn-install').style.display = 'none';
+        document.getElementById('install-prompt').classList.remove('show');
+      });
+    }
+    document.getElementById('btn-install').addEventListener('click', doInstall);
+    document.getElementById('install-confirm').addEventListener('click', doInstall);
+    document.getElementById('install-close').addEventListener('click', () => {
+      document.getElementById('install-prompt').classList.remove('show');
+      localStorage.setItem('install-dismissed', '1');
+    });
+
+    // ========== Service Worker ==========
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW failed', err));
+    }
+
+    // ========== Refresh ==========
+    document.getElementById('btn-refresh').addEventListener('click', () => {
+      loadLectures();
+      if (navigator.serviceWorker?.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+      }
+    });
+
+    // Start
+    loadLectures();
+  </script>
+</body>
+</html>

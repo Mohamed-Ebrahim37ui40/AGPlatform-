@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>محاضرة إنتاج البطاطس التصنيعية | أنطون</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark: #0B2E26;
+      --dark-alt: #0F3D33;
+      --accent: #10B981;
+      --accent-dk: #059669;
+      --accent-lt: #34D399;
+      --gold: #F59E0B;
+      --bg: #F4F9F7;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #64748B;
+      --success: #059669;
+      --danger: #DC2626;
+      --shadow: 0 10px 30px rgba(11, 46, 38, 0.08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cairo', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      direction: rtl;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 100%);
+      color: white;
+      padding: 80px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(16,185,129,0.25) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(52,211,153,0.15) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,0.2);
+      color: var(--accent-lt);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--accent-lt); }
+    .hero-sub {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin-bottom: 12px;
+    }
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--accent-lt);
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    .hero-meta {
+      margin-top: 40px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ========== Navigation ========== */
+    .nav-wrap {
+      background: white;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .nav a:hover, .nav a.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ========== Container ========== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-num {
+      background: var(--accent);
+      color: white;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .section-line {
+      height: 3px;
+      background: linear-gradient(to left, var(--accent), transparent);
+      margin: 8px 0 24px;
+      border-radius: 2px;
+    }
+
+    /* ========== Cards ========== */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(16,185,129,0.08);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(11,46,38,0.12);
+    }
+    .card.dark {
+      background: var(--dark);
+      color: white;
+      border: none;
+    }
+    .card.dark .card-title { color: var(--accent-lt); }
+    .card.accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dk) 100%);
+      color: white;
+      border: none;
+    }
+    .card-icon {
+      width: 52px; height: 52px;
+      background: rgba(16,185,129,0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .card.dark .card-icon { background: rgba(255,255,255,0.1); }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .card.dark p, .card.dark li { color: rgba(255,255,255,0.8); }
+
+    /* ========== List items ========== */
+    .list-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      padding: 20px 24px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+      border-right: 4px solid var(--accent);
+    }
+    .list-num {
+      background: var(--accent);
+      color: white;
+      min-width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .list-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .list-card p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ========== Equation box ========== */
+    .equation {
+      background: var(--dark);
+      color: white;
+      border-radius: 20px;
+      padding: 48px 32px;
+      text-align: center;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .equation::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(16,185,129,0.3), transparent);
+      top: -40px; right: -40px;
+    }
+    .equation .label { color: var(--accent-lt); font-size: 1.1rem; margin-bottom: 8px; }
+    .equation .result {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      margin: 12px 0;
+    }
+
+    /* ========== Pros / Cons ========== */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 700px) { .pros-cons { grid-template-columns: 1fr; } }
+    .pros, .cons {
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .pros { background: #ECFDF5; border: 1px solid #A7F3D0; }
+    .cons { background: #FEF2F2; border: 1px solid #FECACA; }
+    .pros h3 { color: var(--success); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .cons h3 { color: var(--danger); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .pros li, .cons li {
+      list-style: none;
+      padding: 10px 0;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(0,0,0,0.06);
+    }
+    .pros li::before { content: "✓ "; color: var(--success); font-weight: 800; }
+    .cons li::before { content: "✗ "; color: var(--danger); font-weight: 800; }
+
+    /* ========== Chain ========== */
+    .chain {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin: 24px 0;
+    }
+    .chain-item {
+      background: var(--card);
+      padding: 20px 28px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      min-width: 140px;
+    }
+    .chain-item.final {
+      background: var(--dark);
+      color: white;
+    }
+    .chain-item.final .chain-title { color: var(--accent-lt); }
+    .chain-arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .chain-title { font-weight: 700; font-size: 1.05rem; }
+    .chain-desc { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .chain-item.final .chain-desc { color: rgba(255,255,255,0.7); }
+
+    /* ========== Quote ========== */
+    .quote {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 48px 36px;
+      text-align: center;
+      margin: 32px 0;
+    }
+    .quote p {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--accent-lt);
+      line-height: 1.5;
+    }
+    .quote-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .quote-step {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .quote-step .num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .quote-step h4 { color: white; margin: 6px 0 4px; font-size: 1rem; }
+    .quote-step span { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+
+    /* ========== Summary axes ========== */
+    .axis-card {
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .axis-icon {
+      width: 64px; height: 64px;
+      background: var(--dark);
+      color: var(--accent-lt);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 16px;
+    }
+    .axis-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: var(--dark); }
+    .axis-card ul { list-style: none; }
+    .axis-card li {
+      padding: 6px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    footer h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    footer .tagline {
+      color: var(--accent-lt);
+      font-size: 1.15rem;
+      margin-bottom: 24px;
+    }
+    footer .path {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+    }
+
+    /* ========== Utilities ========== */
+    .highlight-box {
+      background: rgba(16,185,129,0.1);
+      border-right: 4px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-weight: 600;
+    }
+    .big-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    ul.clean { list-style: none; }
+    ul.clean li {
+      padding: 8px 0;
+      padding-right: 20px;
+      position: relative;
+    }
+    ul.clean li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: 800;
+      position: absolute;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge">🌱 محاضرة علمية</div>
+      <h1>إنتاج البطاطس<br><span>التصنيعية</span></h1>
+      <p class="hero-sub">من الخبرة الميدانية إلى البيانات والذكاء الاصطناعي</p>
+      <p class="hero-tagline">الزراعة هي عملية حصاد أشعة الشمس</p>
+      <p class="hero-meta">المحاضر: أنطون (Anton) — خبير عالمي في علم إنتاج البطاطس</p>
+    </div>
+  </header>
+
+  <!-- ===== NAV ===== -->
+  <div class="nav-wrap">
+    <nav class="nav">
+      <a href="#intro">المقدمة</a>
+      <a href="#goals">الأهداف</a>
+      <a href="#science">الأساس العلمي</a>
+      <a href="#stages">المراحل</a>
+      <a href="#seed">التقاوي</a>
+      <a href="#efficiency">الكفاءة</a>
+      <a href="#dry">المادة الجافة</a>
+      <a href="#soil">التربة والطقس</a>
+      <a href="#ai">الذكاء الاصطناعي</a>
+      <a href="#summary">الخلاصة</a>
+    </nav>
+  </div>
+
+  <main class="container">
+
+    <!-- 1. المقدمة -->
+    <section id="intro">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2>مقدمة المحاضرة — التحديات الزراعية</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="grid-4">
+        <div class="card dark">
+          <div class="card-icon">🌤️</div>
+          <div class="card-title">تغير المناخ</div>
+          <p>ارتفاع الحرارة · تقلب الأمطار · إجهاد حراري</p>
+        </div>
+        <div class="card dark">
+          <div class="card-icon">💧</div>
+          <div class="card-title">شح المياه</div>
+          <p>ندرة الموارد المائية · الحاجة لكفاءة الري</p>
+        </div>
+        <div class="card dark">
+          <div class="card-icon">📈</div>
+          <div class="card-title">التقلبات الاقتصادية</div>
+          <p>أسعار المدخلات · استقرار الأسواق</p>
+        </div>
+        <div class="card dark">
+          <div class="card-icon">🤖</div>
+          <div class="card-title">البيانات والذكاء الاصطناعي</div>
+          <p>بناء قواعد معلومات · قرارات مبنية على بيانات</p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:28px">
+        💡 <strong>الهدف من جمع البيانات:</strong> ليس مجرد التسجيل، بل بناء قاعدة معلومات يمكن استخدامها لاحقًا في الذكاء الاصطناعي لتحسين القرارات الزراعية. الخبرة الفنية + التعاون = النجاح.
+      </div>
+    </section>
+
+    <!-- 2. الأهداف -->
+    <section id="goals">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2>هدف زراعة البطاطس التصنيعية</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="list-card">
+        <div class="list-num">01</div>
+        <div>
+          <h4>أعلى إنتاجية ممكنة</h4>
+          <p>تعظيم الطن للهكتار مع الحفاظ على الجودة</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-num">02</div>
+        <div>
+          <h4>حجم درنات مناسب</h4>
+          <p>توزيع حجم مثالي للشيبس والمقلي</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-num">03</div>
+        <div>
+          <h4>رفع نسبة المادة الجافة</h4>
+          <p>محتوى جاف عالٍ = جودة تصنيع أفضل</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-num">04</div>
+        <div>
+          <h4>خفض السكريات المختزلة</h4>
+          <p>تجنب الاسمرار أثناء القلي</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-num">05</div>
+        <div>
+          <h4>جودة المنتج النهائي</h4>
+          <p>ملاءمة مثالية للشيبس والبطاطس المقلية</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. الأساس العلمي -->
+    <section id="science">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2>الأساس العلمي للإنتاج</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="quote" style="margin-bottom:32px">
+        <p>الزراعة هي عملية حصاد أشعة الشمس</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">☀️</div>
+          <div class="card-title">اعتراض الإشعاع</div>
+          <p>الأوراق الخضراء تعترض أشعة الشمس وتحولها إلى طاقة</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍃</div>
+          <div class="card-title">البناء الضوئي</div>
+          <p>تحويل الطاقة الشمسية إلى مادة جافة داخل النبات</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🥔</div>
+          <div class="card-title">تراكم المادة</div>
+          <p>المادة الجافة تنتقل إلى الدرنات = الإنتاج</p>
+        </div>
+      </div>
+
+      <div class="equation">
+        <div class="label">كل 1 ميجا جول من الإشعاع المعترض</div>
+        <div style="opacity:0.7; margin:8px 0">ينتج تقريبًا</div>
+        <div class="result">1.25 جم مادة جافة</div>
+        <p style="margin-top:12px; opacity:0.7; font-size:0.95rem">تنطبق على البطاطس وغيرها من المحاصيل</p>
+      </div>
+
+      <div class="grid-4" style="margin-top:24px">
+        <div class="card" style="text-align:center">
+          <div class="big-number" style="font-size:1.8rem">1</div>
+          <strong>الزراعة المبكرة</strong>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="big-number" style="font-size:1.8rem">2</div>
+          <strong>تسريع الإنبات</strong>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="big-number" style="font-size:1.8rem">3</div>
+          <strong>تغطية كاملة سريعة</strong>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="big-number" style="font-size:1.8rem">4</div>
+          <strong>إطالة الخضرة</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. المراحل -->
+    <section id="stages">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2>المراحل الحرجة والنمو</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <h3 style="margin-bottom:16px; color:var(--dark)">المرحلة الأولى: من الزراعة حتى الإنبات</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">ما الذي يجب تسجيله؟</div>
+          <ul class="clean">
+            <li>تاريخ الزراعة</li>
+            <li>عمق الزراعة</li>
+            <li>طول البرعم</li>
+            <li>سرعة نمو البرعم</li>
+            <li>تاريخ الإنبات</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <div class="card-title">تعريف تاريخ الإنبات</div>
+          <p style="margin-bottom:12px">اليوم الذي تظهر فيه</p>
+          <div class="big-number">50%</div>
+          <p style="margin-top:8px">من النباتات المزروعة فوق سطح التربة</p>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px; color:var(--dark)">الوحدات الحرارية (Temperature Sum)</h3>
+      <div class="highlight-box">
+        بدلًا من الاعتماد على عدد الأيام فقط، نعتمد على <strong>مجموع متوسط درجات الحرارة اليومية منذ الزراعة</strong>
+      </div>
+      <div class="grid-3">
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">🌡️</div>
+          <div class="card-title">سرعة الإنبات</div>
+          <p>تقييم متى تظهر النباتات</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">📊</div>
+          <div class="card-title">سرعة النمو</div>
+          <p>مقارنة معدلات التطور</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">🔄</div>
+          <div class="card-title">مقارنة الحقول</div>
+          <p>بين المواسم والمناطق</p>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px; color:var(--dark)">التغطية الأرضية (Ground Cover)</h3>
+      <div class="chain">
+        <div class="chain-item">
+          <div class="chain-title">تغطية أعلى</div>
+          <div class="chain-desc">مساحة أوراق أكبر</div>
+        </div>
+        <div class="chain-arrow">←</div>
+        <div class="chain-item">
+          <div class="chain-title">اعتراض أكثر</div>
+          <div class="chain-desc">أشعة شمس أكثر</div>
+        </div>
+        <div class="chain-arrow">←</div>
+        <div class="chain-item">
+          <div class="chain-title">بناء ضوئي</div>
+          <div class="chain-desc">مادة جافة أكثر</div>
+        </div>
+        <div class="chain-arrow">←</div>
+        <div class="chain-item final">
+          <div class="chain-title">إنتاج أعلى</div>
+          <div class="chain-desc">درنات أكثر وأفضل</div>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px; color:var(--dark)">مؤشر الحصاد (Harvest Index)</h3>
+      <div class="grid-2">
+        <div class="card dark">
+          <div class="card-title">التعريف</div>
+          <p>النسبة المئوية للمادة الجافة التي تنتقل إلى الدرنات مقارنة بإجمالي المادة الجافة المنتجة</p>
+        </div>
+        <div class="card">
+          <div class="card-title">الهدف والنتيجة</div>
+          <ul class="clean">
+            <li>زيادة المادة الجافة المتجهة للدرنات</li>
+            <li>ارتفاع كفاءة النبات</li>
+            <li>تحسن جودة المحصول والعائد</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. التقاوي -->
+    <section id="seed">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2>جودة التقاوي وملاحظات الموسم</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">🥔</div>
+          <div class="card-title">حجم الدرنة</div>
+          <ul class="clean">
+            <li>يؤثر على عدد السيقان</li>
+            <li>يؤثر على قوة النمو الأولي</li>
+            <li>اختيار الحجم حسب الهدف</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon">👁️</div>
+          <div class="card-title">عدد العيون</div>
+          <ul class="clean">
+            <li>كلما زاد عدد العيون</li>
+            <li>زاد عدد السيقان الرئيسية</li>
+            <li>زاد عدد الدرنات المحتملة</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon">⏳</div>
+          <div class="card-title">العمر الفسيولوجي</div>
+          <ul class="clean">
+            <li>يتأثر بمدة التخزين</li>
+            <li>درجة حرارة التخزين</li>
+            <li>تاريخ الحصاد السابق</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px; color:var(--dark)">ملاحظات يجب تسجيلها ميدانيًا</h3>
+      <div class="list-card"><div class="list-num">01</div><div><h4>عدد السيقان الرئيسية</h4><p>لكل نبات أو وحدة مساحة</p></div></div>
+      <div class="list-card"><div class="list-num">02</div><div><h4>تاريخ بدء تكوين الدرنات</h4><p>بداية تحول البراعم إلى درنات</p></div></div>
+      <div class="list-card"><div class="list-num">03</div><div><h4>تاريخ قتل العرش (Vine Kill)</h4><p>متى تم قتل المجموع الخضري</p></div></div>
+      <div class="list-card"><div class="list-num">04</div><div><h4>تاريخ انتهاء النمو الطبيعي</h4><p>نهاية دورة النمو</p></div></div>
+      <div class="list-card"><div class="list-num">05</div><div><h4>نسبة الأوراق الخضراء المتبقية</h4><p>عند الحصاد أو قبل القتل</p></div></div>
+    </section>
+
+    <!-- 6. الكفاءة -->
+    <section id="efficiency">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2>كفاءة استخدام الموارد</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="grid-3">
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">☀️</div>
+          <div class="card-title">كفاءة استخدام الضوء</div>
+          <p>قياس كمية الإنتاج الناتجة عن كل وحدة إشعاع شمسي معترض</p>
+          <div style="margin-top:16px; background:var(--accent); color:white; padding:10px; border-radius:10px; font-weight:700">
+            إنتاج / إشعاع معترض
+          </div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">💧</div>
+          <div class="card-title">كفاءة استخدام المياه</div>
+          <p>كل 10 مم ماء ≈ 1 طن بطاطس طازجة<br>أو 1 لتر ماء ≈ 3 جم مادة جافة</p>
+          <div style="margin-top:16px; background:var(--accent); color:white; padding:10px; border-radius:10px; font-weight:700">
+            10 مم ≈ 1 طن
+          </div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 12px">🧪</div>
+          <div class="card-title">كفاءة استخدام النيتروجين</div>
+          <p>مقارنة كمية السماد المضافة بالإنتاج الناتج عنها</p>
+          <div style="margin-top:16px; background:var(--accent); color:white; padding:10px; border-radius:10px; font-weight:700">
+            إنتاج / نيتروجين مضاف
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. المادة الجافة -->
+    <section id="dry">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2>العوامل المؤثرة على المادة الجافة</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✓ تؤدي إلى الزيادة</h3>
+          <ul>
+            <li>نضج المحصول الكامل</li>
+            <li>ارتفاع مؤشر الحصاد</li>
+            <li>درجات حرارة معتدلة</li>
+            <li>تربة ثقيلة (طينية)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>✗ تؤدي إلى الخفض</h3>
+          <ul>
+            <li>الري الزائد</li>
+            <li>ارتفاع الحرارة</li>
+            <li>زيادة النيتروجين</li>
+            <li>زيادة البوتاسيوم</li>
+            <li>الحصاد المبكر</li>
+            <li>التربة الرملية الخفيفة</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. التربة والطقس -->
+    <section id="soil">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2>مراقبة التربة والطقس</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <h3 style="margin-bottom:16px; color:var(--dark)">مراقبة التربة</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">خصائص التربة</div>
+          <ul class="clean"><li>نسبة الرمل</li><li>نسبة الطمي</li><li>نسبة الطين</li></ul>
+        </div>
+        <div class="card">
+          <div class="card-title">العمق الفعال للجذور</div>
+          <ul class="clean"><li>حساسة للطبقات الصماء</li><li>كلما زاد العمق زادت الإنتاجية</li></ul>
+        </div>
+        <div class="card">
+          <div class="card-title">منسوب الماء الأرضي</div>
+          <ul class="clean"><li>يفسر توفر المياه</li><li>يفسر اختلاف الإنتاج</li></ul>
+        </div>
+        <div class="card">
+          <div class="card-title">السعة الحقلية</div>
+          <ul class="clean"><li>الماء بين السعة الحقلية</li><li>ونقطة الذبول الدائم</li></ul>
+        </div>
+        <div class="card">
+          <div class="card-title">خصوبة التربة</div>
+          <ul class="clean"><li>النيتروجين المتبقي</li><li>الفوسفور</li><li>المادة العضوية</li></ul>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px; color:var(--dark)">مراقبة الطقس</h3>
+      <div class="grid-3">
+        <div class="card dark">
+          <div class="card-icon">🌡️</div>
+          <div class="card-title">درجات الحرارة</div>
+          <ul class="clean" style="color:rgba(255,255,255,0.8)">
+            <li>الصغرى</li><li>العظمى</li><li>المتوسط اليومي</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <div class="card-icon">💦</div>
+          <div class="card-title">التبخر والنتح (ETP)</div>
+          <ul class="clean" style="color:rgba(255,255,255,0.8)">
+            <li>تبخر من التربة</li><li>نتح النبات</li><li>مجموع الاستهلاك</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <div class="card-icon">☀️</div>
+          <div class="card-title">الإشعاع الشمسي</div>
+          <ul class="clean" style="color:rgba(255,255,255,0.8)">
+            <li>من أهم العوامل</li><li>المحددة للإنتاج</li><li>يجب قياسه بدقة</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. الذكاء الاصطناعي -->
+    <section id="ai">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <h2>البيانات المطلوبة للذكاء الاصطناعي</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <p style="margin-bottom:24px; color:var(--muted); font-size:1.05rem">
+        الذكاء الاصطناعي لن يكون مفيدًا إلا إذا زُوِّد ببيانات دقيقة وشاملة:
+      </p>
+
+      <div class="grid-4">
+        <div class="card" style="text-align:center; padding:20px"><strong>تاريخ الزراعة</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>تاريخ الإنبات</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>عدد السيقان</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>تكوين الدرنات</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>بيانات الري</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>بيانات الأسمدة</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>بيانات الطقس</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>خصائص التربة</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>الإنتاج النهائي</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>المادة الجافة</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>حجم الدرنات</strong></div>
+        <div class="card" style="text-align:center; padding:20px"><strong>مؤشر الحصاد</strong></div>
+      </div>
+
+      <div class="quote">
+        <p>« الخبرة يجب أن تتحول إلى بيانات »</p>
+        <div class="quote-steps">
+          <div class="quote-step">
+            <div class="num">1</div>
+            <h4>ملاحظات حقلية</h4>
+            <span>تسجيل دقيق ومستمر</span>
+          </div>
+          <div class="quote-step">
+            <div class="num">2</div>
+            <h4>قواعد البيانات</h4>
+            <span>تنظيم وهيكلة</span>
+          </div>
+          <div class="quote-step">
+            <div class="num">3</div>
+            <h4>تفسير الاختلافات</h4>
+            <span>فهم أسباب التباين</span>
+          </div>
+          <div class="quote-step">
+            <div class="num">4</div>
+            <h4>تحسين القرارات</h4>
+            <span>مبنية على أدلة</span>
+          </div>
+          <div class="quote-step">
+            <div class="num">5</div>
+            <h4>تدريب الذكاء الاصطناعي</h4>
+            <span>نماذج أدق</span>
+          </div>
+          <div class="quote-step">
+            <div class="num">6</div>
+            <h4>رفع الإنتاجية</h4>
+            <span>مستقبل أفضل</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. الخلاصة -->
+    <section id="summary">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2>الخلاصة التنفيذية</h2>
+      </div>
+      <div class="section-line"></div>
+
+      <p style="margin-bottom:28px; font-size:1.1rem; color:var(--muted)">
+        لتحسين إنتاج البطاطس يجب مراقبة وتسجيل أربعة محاور رئيسية:
+      </p>
+
+      <div class="grid-4">
+        <div class="card axis-card">
+          <div class="axis-icon">🌱</div>
+          <h3>المحصول</h3>
+          <ul>
+            <li>الإنبات</li>
+            <li>التغطية الأرضية</li>
+            <li>تكوين الدرنات</li>
+            <li>النضج</li>
+          </ul>
+        </div>
+        <div class="card axis-card">
+          <div class="axis-icon">🥔</div>
+          <h3>التقاوي</h3>
+          <ul>
+            <li>الحجم</li>
+            <li>العيون</li>
+            <li>العمر الفسيولوجي</li>
+          </ul>
+        </div>
+        <div class="card axis-card">
+          <div class="axis-icon">🌤️</div>
+          <h3>البيئة</h3>
+          <ul>
+            <li>الطقس</li>
+            <li>الإشعاع الشمسي</li>
+            <li>درجات الحرارة</li>
+          </ul>
+        </div>
+        <div class="card axis-card">
+          <div class="axis-icon">🌍</div>
+          <h3>الموارد</h3>
+          <ul>
+            <li>المياه</li>
+            <li>الأسمدة</li>
+            <li>خصائص التربة</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <h2>شكرًا لكم</h2>
+    <p class="tagline">كل ملاحظة حقلية دقيقة اليوم هي قرار زراعي أفضل غدًا</p>
+    <p class="path">الخبرة → بيانات → ذكاء اصطناعي → إنتاجية أعلى</p>
+    <p style="margin-top:32px; opacity:0.5; font-size:0.9rem">أنطون · خبير عالمي في علم إنتاج البطاطس</p>
+  </footer>
+
+</body>
+</html>

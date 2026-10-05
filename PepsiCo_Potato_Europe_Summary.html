@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص محاضرة Potato Europe | PepsiCo Agro University</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+
+  :root {
+    --primary: #1a5f2a;
+    --primary-dark: #0d3b1a;
+    --accent: #f4a261;
+    --accent2: #e76f51;
+    --bg: #f8faf8;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-light: #555;
+    --border: #e0e8e0;
+    --success: #2a9d8f;
+    --warning: #e9c46a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .logo {
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #1a1a1a;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  /* Navigation */
+  nav {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--text);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* Main Content */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  section {
+    margin-bottom: 50px;
+    scroll-margin-top: 80px;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title span {
+    background: var(--primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .section-desc {
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .card p, .card li {
+    color: var(--text-light);
+    font-size: 1.02rem;
+  }
+
+  /* Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+
+  /* Priority Cards */
+  .priority {
+    background: linear-gradient(145deg, #fff, #f0f7f0);
+    border-right: 5px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .priority .num {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(26,95,42,0.08);
+  }
+
+  .priority h3 {
+    margin-top: 8px;
+  }
+
+  /* Highlight box */
+  .highlight {
+    background: linear-gradient(90deg, #e8f5e9, #f1f8e9);
+    border-right: 5px solid var(--success);
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin: 20px 0;
+  }
+
+  .highlight strong {
+    color: var(--primary-dark);
+  }
+
+  /* Quote */
+  .quote {
+    background: var(--primary-dark);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    position: relative;
+    margin: 30px 0;
+  }
+
+  .quote::before {
+    content: '"';
+    font-size: 5rem;
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    opacity: 0.15;
+    font-family: serif;
+  }
+
+  .quote p {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.9;
+  }
+
+  .quote .author {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+
+  /* Timeline / Steps */
+  .steps {
+    position: relative;
+    padding-right: 30px;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    right: 9px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border);
+  }
+
+  .step {
+    position: relative;
+    margin-bottom: 28px;
+    padding-right: 25px;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--primary);
+  }
+
+  /* Speaker */
+  .speaker {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .speaker-info h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .speaker-info span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    background: #e8f5e9;
+    color: var(--primary-dark);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.98rem;
+  }
+
+  th, td {
+    padding: 12px 16px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background: #f5faf5;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
+  }
+
+  footer p {
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header { padding: 40px 16px 60px; }
+    .card { padding: 20px; }
+    .section-title { font-size: 1.4rem; }
+  }
+
+  /* Print */
+  @media print {
+    nav { display: none; }
+    header { padding: 30px; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">PEPSICO • AGRO UNIVERSITY</div>
+  <h1>ملخص محاضرة Potato Europe</h1>
+  <p class="subtitle">تحديات المناخ • الزراعة التجديدية • التحول الرقمي • بناء سلسلة توريد مرنة</p>
+  <div class="badge">ملخص منظم وسهل الفهم</div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="scrollToSection('overview')">نظرة عامة</button>
+    <button class="nav-btn" onclick="scrollToSection('ian')">عرض إيان ريجبي</button>
+    <button class="nav-btn" onclick="scrollToSection('priorities')">الأولويات الأربع</button>
+    <button class="nav-btn" onclick="scrollToSection('mini')">عرض ميني أغاروال</button>
+    <button class="nav-btn" onclick="scrollToSection('digital')">التحول الرقمي</button>
+    <button class="nav-btn" onclick="scrollToSection('takeaways')">الخلاصة</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Overview -->
+  <section id="overview">
+    <h2 class="section-title"><span>1</span> نظرة عامة على الحدث</h2>
+    <p class="section-desc">ملخص سريع لما حدث في Potato Europe وكيف بدأت الجلسة.</p>
+
+    <div class="card">
+      <h3>ما الذي حدث؟</h3>
+      <p>
+        كانت فعالية <strong>Potato Europe</strong> فرصة كبيرة للتواصل مع خبراء وشركاء من مختلف الدول. 
+        حضرها فريق بيبسيكو بما فيهم مارسيلو، وكانت يوماً مثمراً مليئاً بالتكنولوجيا والنقاشات العملية.
+      </p>
+      <div class="highlight" style="margin-top:18px">
+        <strong>برنامج الجلسة:</strong><br>
+        1. إيان ريجبي → نظرة عامة على برنامج Potato Europe + تحديث تنظيمي<br>
+        2. ميني أغاروال → نظرة عامة على برنامج الرقمنة الزراعية<br>
+        3. مائدة مستديرة مع مارسيلو + روب رايات + سافاندو + رودولف + أسئلة الجمهور
+      </div>
+    </div>
+  </section>
+
+  <!-- Ian Rigby -->
+  <section id="ian">
+    <h2 class="section-title"><span>2</span> عرض إيان ريجبي</h2>
+    <p class="section-desc">رئيس فريق المشتريات الزراعية في أوروبا + قائد برنامج PEP Plus</p>
+
+    <div class="speaker">
+      <div class="avatar">IR</div>
+      <div class="speaker-info">
+        <h4>إيان ريجبي (Ian Rigby)</h4>
+        <span>من المملكة المتحدة • يقود المشتريات الزراعية لـ Agro ويقود برنامج PEP Plus</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>المنطقة الجديدة: Ameya و India</h3>
+      <p>
+        أعلن إيان عن منطقة جديدة ضخمة تُدعى <strong>Ameya and India</strong>. 
+        وصفها بأنها "غير مسبوقة" من حيث الحجم والخبرة وعدد الأسواق (أكثر من 23 سوقاً).
+      </p>
+      <div class="quote">
+        <p>ما آمله من هذا الفريق الجديد هو بناء أفضل الممارسات ومشاركتها بسرعة غير مسبوقة. ما يحدث في مزرعة في تركيا يمكن أن يصل إلى لينكولنشاير خلال أيام وليس سنوات.</p>
+        <div class="author">— إيان ريجبي</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>التحدي الأكبر: المناخ</h3>
+      <p>
+        أكد إيان أن كلمة "غير مسبوق" تُستخدم كثيراً، لكنها هذه المرة حقيقية. 
+        أوروبا شهدت موجات حرّ متتالية، وجفاف، وأمطار غزيرة، وتأثير ظاهرة النينيو القادمة.
+      </p>
+      <ul style="margin:15px 0 0 20px; color:var(--text-light)">
+        <li>ألمانيا شهدت 3 موجات حرّ هذا العام</li>
+        <li>انخفاض ثقة المزارعين بسبب ارتفاع تكاليف المدخلات</li>
+        <li>انخفاض المساحات المزروعة قبل حتى أن يضرب الطقس</li>
+        <li>نتيجة مزدوجة: فقدان الثقة + الطقس = نقص في الإنتاج</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 Priorities -->
+  <section id="priorities">
+    <h2 class="section-title"><span>3</span> الأولويات الأربع للنجاح</h2>
+    <p class="section-desc">هذه هي الركائز التي سيركز عليها الفريق في المملكة المتحدة وأوروبا ومنطقة EMEA</p>
+
+    <div class="grid-2">
+      <div class="card priority">
+        <div class="num">01</div>
+        <h3>المياه (Water)</h3>
+        <p>
+          <strong>الأولوية رقم 1.</strong><br>
+          على المدى القصير: دعم المزارعين في الوصول للمياه وزيادة الكفاءة.<br>
+          على المدى الطويل: استثمارات ضخمة في الخزانات والبنية التحتية لتخزين المياه في الشتاء واستخدامها في الصيف.<br>
+          <em>«لن نستطيع التوفير من هذا التحدي... نحتاج استثماراً حقيقياً»</em>
+        </p>
+      </div>
+
+      <div class="card priority">
+        <div class="num">02</div>
+        <h3>الزراعة التجديدية وصحة التربة</h3>
+        <p>
+          مضاعفة الاستثمار في الممارسات التجديدية. 
+          المحاصيل الغطائية (Cover Crops) أثبتت فعاليتها هذا العام في الاحتفاظ بالمياه وتحسين بنية التربة.
+          ارتفعت نسبة الأراضي المزروعة بمحاصيل غطائية من 14% إلى أكثر من 65-70%.
+        </p>
+      </div>
+
+      <div class="card priority">
+        <div class="num">03</div>
+        <h3>البيانات والرقمنة</h3>
+        <p>
+          لدى بيبسيكو كنز من البيانات: 900 حقل في المملكة المتحدة، 200 منها تُحلل بالتفصيل كل عام، وآلاف الشحنات إلى المصانع.
+          التحدي الآن: كيف نربط كل هذه البيانات لتصبح <strong>قابلة للتنفيذ</strong> في يد المزارع والأغronomist في الوقت المناسب؟
+        </p>
+      </div>
+
+      <div class="card priority">
+        <div class="num">04</div>
+        <h3>مشاركة المخاطر (Risk Sharing)</h3>
+        <p>
+          عدم تمرير المخاطر على طول سلسلة القيمة. 
+          وقّعت بيبسيكو أول عقد تجاري متعدد السنوات مع أحد الموردين ليعطي الطرفين ثقة للاستثمار طويل الأمد.
+          الهدف: التحول من المفاوضات السنوية إلى تخطيط طويل الأمد.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>النتيجة المتوقعة:</strong> سلسلة توريد أكثر مرونة وإنتاجية على المدى الطويل.
+    </div>
+
+    <div class="card" style="margin-top:25px">
+      <h3>قصة نجاح حقيقية: فائض البطاطس القياسي</h3>
+      <p>
+        العام الماضي واجهت المملكة المتحدة (وأوروبا كلها) فائضاً هائلاً في البطاطس. السعر في السوق المفتوحة وصل إلى الصفر تقريباً.
+      </p>
+      <div class="steps" style="margin-top:20px">
+        <div class="step">
+          <strong>ما فعلته بيبسيكو:</strong>
+          <p>احترمت العقود بالكامل، وتواصلت مع كل المزارعين والموردين لحل المشكلة معاً.</p>
+        </div>
+        <div class="step">
+          <strong>الحلول العملية:</strong>
+          <p>
+            • تخزين البطاطس لـ 10 أشهر (شهرين إضافيين عن المعتاد)<br>
+            • تصدير البطاطس عبر شبكة بيبسيكو الأوروبية<br>
+            • تحويل جزء منها إلى رقائق (Potato Flake) ثم استخدامها في منتجات Baked Lays
+          </p>
+        </div>
+        <div class="step">
+          <strong>النتيجة:</strong>
+          <p>
+            احتفظوا بأفضل المزارعين، وحققوا أعلى جودة تنافسية في المملكة المتحدة رغم الموسم الصعب، 
+            وأثبتوا أنهم "الشريك المفضل" وليس مجرد مشترٍ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini Agarwal -->
+  <section id="mini">
+    <h2 class="section-title"><span>4</span> عرض ميني أغاروال – التحول الرقمي</h2>
+    <p class="section-desc">من الفريق العالمي للزراعة في بيبسيكو • أكثر من 12 عاماً في الرقمنة الزراعية</p>
+
+    <div class="speaker">
+      <div class="avatar">MA</div>
+      <div class="speaker-info">
+        <h4>ميني أغاروال (Mini Agarwal)</h4>
+        <span>Global Agriculture Office • تقود التحول الرقمي في سلسلة قيمة البطاطس</span>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>الأغronomy أولاً... والرقمنة تضخّم الخبرة. البيانات رائعة، لكن اتخاذ القرار هو الهدف.</p>
+      <div class="author">— ميني أغاروال</div>
+    </div>
+
+    <div class="card">
+      <h3>لماذا الرقمنة مهمة؟</h3>
+      <p>
+        زراعة البطاطس صعبة جداً. زراعة البطاطس بجودة متسقة على نطاق عالمي أصعب بكثير.
+        <strong>5% فقط من البطاطس عالمياً لا تلبي مواصفات منتجات Lays</strong> بسبب صعوبة الزراعة.
+      </p>
+      <p style="margin-top:12px">
+        الأغronomist يدعم مئات الحقول يومياً. إذا ساعدته الرقمنة على التركيز على الـ 5 حقول التي تحتاج تدخلاً اليوم، فهذا هو القيمة الحقيقية.
+      </p>
+    </div>
+  </section>
+
+  <!-- Digital North Star -->
+  <section id="digital">
+    <h2 class="section-title"><span>5</span> Digital North Star – الاتجاه الاستراتيجي</h2>
+    <p class="section-desc">أربع أولويات استراتيجية للتحول الرقمي في الزراعة</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>1. البيانات كأساس</h3>
+        <p>
+          • قالب بيانات زراعي عالمي (Global Ag Data Template)<br>
+          • محمل بيانات بالذكاء الاصطناعي (AI Data Loader)<br>
+          • تغطية رقمية لتحديد الفجوات من المزرعة إلى المصنع
+        </p>
+      </div>
+      <div class="card">
+        <h3>2. تسريع الرؤى بالذكاء الاصطناعي</h3>
+        <p>
+          استخدام الذكاء الاصطناعي لتحويل البيانات إلى رؤى قابلة للتنفيذ بسرعة، 
+          بدلاً من البحث اليدوي في الجداول والتقارير.
+        </p>
+      </div>
+      <div class="card">
+        <h3>3. بناء النظام البيئي</h3>
+        <p>
+          جعل الأدوات سهلة الاستخدام وقابلة للتنفيذ للمزارعين والأغronomists، 
+          سواء كانت داخلية لبيبسيكو أو خارجية للشركاء.
+        </p>
+      </div>
+      <div class="card">
+        <h3>4. بناء المهارات (AI Fluency)</h3>
+        <p>
+          تدريب المجتمع الداخلي والمزارعين على استخدام أدوات الذكاء الاصطناعي 
+          (مثل Copilot) في قرارات الزراعة اليومية.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:25px; border-right:5px solid var(--accent)">
+      <h3>AI Agronomist – الأداة الرائدة</h3>
+      <p>
+        منصة رقمية محمولة (على الهاتف) تحول ملاحظات الحقل والصور والبيانات الزراعية إلى 
+        <strong>رؤى قابلة للتنفيذ فوراً</strong>.
+      </p>
+      <ul style="margin:15px 0 0 20px; color:var(--text-light)">
+        <li>اكتشاف الآفات والأمراض في الحقل مع توصيات فورية</li>
+        <li>تقييم جودة المحصول بشكل موحد عبر المناطق</li>
+        <li>تقليل الاستخدام غير الضروري للكيماويات</li>
+        <li>رؤية مبكرة للمخاطر قبل أن تؤثر على الجودة أو التوريد</li>
+      </ul>
+      <div class="highlight" style="margin-top:18px">
+        <strong>رسالة مهمة:</strong> AI Agronomist لا يستبدل الأغronomist... بل يضخّم خبرته.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>نتائج استطلاع مباشر من الجمهور</h3>
+      <p>سؤال ميني: «إذا ساعدتك الرقمنة في اتخاذ قرار واحد أسرع، فماذا سيكون؟»</p>
+      <div class="tags" style="margin-top:15px">
+        <span class="tag">تقدير المحصول (Yield Estimation)</span>
+        <span class="tag">تخطيط البذور</span>
+        <span class="tag">توقعات المحصول</span>
+        <span class="tag">جودة القبول</span>
+        <span class="tag">الري</span>
+        <span class="tag">كشف الآفات</span>
+        <span class="tag">اختيار الأصناف</span>
+        <span class="tag">توفير التكاليف</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Takeaways -->
+  <section id="takeaways">
+    <h2 class="section-title"><span>6</span> الخلاصة والرسائل الرئيسية</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>من إيان ريجبي</h3>
+        <ul style="margin-right:18px; color:var(--text-light)">
+          <li>التحدي غير مسبوق... والفريق أيضاً غير مسبوق</li>
+          <li>المياه هي الأولوية رقم 1</li>
+          <li>الاستثمار المشترك + مشاركة المخاطر = مرونة طويلة الأمد</li>
+          <li>أفضل المزارعين = أفضل جودة = تفوق تنافسي</li>
+          <li>«لن نستطيع التوفير من هذا التحدي... نحتاج استثماراً»</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>من ميني أغاروال</h3>
+        <ul style="margin-right:18px; color:var(--text-light)">
+          <li>الأغronomy أولاً... الرقمنة تضخّم الخبرة</li>
+          <li>البيانات → الرؤى → القرار</li>
+          <li>AI Agronomist أداة مساعدة وليست بديلاً</li>
+          <li>بناء المهارات مهم بقدر بناء الأدوات</li>
+          <li>الهدف النهائي: قرارات أفضل... معاً</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote" style="margin-top:30px">
+      <p>
+        «ربما الشيء غير المسبوق الذي سيُقال عنا في النهاية... هو ما حققناه معاً.»
+      </p>
+      <div class="author">— إيان ريجبي</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>ملخص منظم من محاضرة Potato Europe – PepsiCo Agro University</p>
+  <p style="margin-top:8px; font-size:0.85rem; opacity:0.7">تم إعداده ليكون واضحاً وسهل الفهم • جميع الحقوق محفوظة للمحتوى الأصلي</p>
+</footer>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('section');
+  const navBtns = document.querySelectorAll('.nav-btn');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollY >= sectionTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navBtns.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('onclick').includes(current)) {
+        btn.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
